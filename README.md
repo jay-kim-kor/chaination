@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 
-# 프로그램 설치 및 실행을 위한 절차 
+## 프로그램 설치 및 실행을 위한 절차 
 ```bash
 1. npm install
 
