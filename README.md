@@ -5,12 +5,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+`프로그램 설치를 위한 절차 
+1. npm install
+
+2. truffle migrate --reset (한번만 )
+
+3. npm run dev
+  # or
+  yarn dev
+  # or
+  pnpm dev
+  ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
