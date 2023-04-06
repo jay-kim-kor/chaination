@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-`프로그램 설치를 위한 절차 
+``프로그램 설치를 위한 절차 
 1. npm install
 
 2. truffle migrate --reset (한번만 )
