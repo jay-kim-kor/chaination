@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Donate from '../truffle_abis/Donate.json'; 
 import Web3 from 'web3'
+import Logo from './components/logo';
 
 type AppProps = {};
 
@@ -67,6 +68,7 @@ const App: React.FC<AppProps> = () => {
 
   return (
     <div>
+      <Logo />
       <h2>Donate</h2>
       <label>
         Amount:
