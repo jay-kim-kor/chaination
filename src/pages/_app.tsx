@@ -1,14 +1,23 @@
-
 import React, { useState, useEffect } from 'react';
 import Donate from '../truffle_abis/Donate.json'; 
 import Web3 from 'web3'
 
-function App() {
-  const [amount, setAmount] = useState(0); // 값을 상태에 저장 
-  const [beneficiary, setBeneficiary] = useState(''); // 수혜자 주소를 상태에 저장 
-  const [contract, setContract] = useState({}); // 계약을 상태에 저장 (다른 곳에서 contract를 따로 선언하지 않아도 됨)
-  const [web3, setWeb3] = useState(); // web3 상태 저장 
-  const [staking, setStaking] = useState(); // 스테이킹한 금액을 상태에 저장 
+type AppProps = {};
+
+type DonateContract = {
+  methods: {
+    donate: (account:string) => any;
+    unstake: (account:string) => any;
+  }
+}
+
+
+const App: React.FC<AppProps> = () => {
+  const [amount, setAmount] = useState<number>(0); // 값을 상태에 저장 
+  const [beneficiary, setBeneficiary] = useState<string>(''); // 수혜자 주소를 상태에 저장 
+  const [contract, setContract] = useState<DonateContract | {}>({}); // 계약을 상태에 저장 (다른 곳에서 contract를 따로 선언하지 않아도 됨)
+  const [web3, setWeb3] = useState<Web3 | undefined>(); // web3 상태 저장 
+  const [staking, setStaking] = useState<string | undefined>(); // 스테이킹한 금액을 상태에 저장 
   
 
   useEffect(() => {
@@ -22,6 +31,9 @@ function App() {
       const contractAddress = Donate.networks[networkId].address; 
       const contractAbi = Donate.abi; 
       const instance = new web3.eth.Contract(contractAbi, contractAddress); // 계약과 계약을 배포한 주소를 instance라는 객체에 저장함 
+      const accountsB = await web3.eth.getAccounts() // 잔액 확인 테스트용 
+      const eth = await web3.eth.getBalance(accountsB[0]) // 현재 로그인한 계좌의 잔액 확인하는 함수
+      console.log(eth) 
 
       setContract(instance); // instance라는 객체를 Contract 상태에 저장함으로써 다른 함수에서도 계약의 함수들을 사용할 수 있음 
     }
@@ -29,7 +41,7 @@ function App() {
     init();
   }, []);
 
-  async function handleDonate() { // 스테이킹 함수 
+  async function handleDonate(): Promise<void> { // 스테이킹 함수 
     if(!web3) return;
     const accounts = await web3.eth.getAccounts(); // 지금 접속한 메타마스크의 계정을 불러옴 
     const amountInWei = web3.utils.toWei(amount.toString()); // 현재 접속한 메타마스크의 잔액을 불러옴(문자열 타입)
@@ -41,7 +53,7 @@ function App() {
     setStaking(amountInWei); // 금액을 스테이킹 잔액 상태에 저장함 51번의 console문을 위해 존재함
   }
 
-  async function transferDonate(){  // 언스테이킹 함수 
+  async function transferDonate(): Promise<void>{  // 언스테이킹 함수 
     const accounts = await web3.eth.getAccounts();  
     const from = accounts[0] // 메타마스크의 계정 주소를 저장함 
     const to = beneficiary // Beneficiary: text에 입력된 수혜자의 주소를 저장함 
@@ -58,7 +70,7 @@ function App() {
       <h2>Donate</h2>
       <label>
         Amount:
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
+        <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
       </label>
       <br />
       <label>
