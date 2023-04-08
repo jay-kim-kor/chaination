@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Donate from '../truffle_abis/Donate.json'; 
 import Web3 from 'web3'
-import Logo from './components/logo';
+import Header from './components/Header';
 
 type AppProps = {};
 
@@ -68,15 +68,15 @@ const App: React.FC<AppProps> = () => {
 
   return (
     <div>
-      <Logo />
-      <h2>Donate</h2>
+      <Header />
+      <h2></h2>
       <label>
-        Amount:
+        기부 금액:
         <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
       </label>
       <br />
       <label>
-        Beneficiary:
+        수혜자:
         <input type="text" id="benefit" value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} /> {/* 실시간으로 입렼칸에 저장된 수혜자 주소들을 Beneficiary 상태에 저장함 ( 다른 함수에서도 쓸 수 있게)*/}
       </label>
       <br />
