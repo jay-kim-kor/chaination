@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Donate from '../truffle_abis/Donate.json'; 
 import Web3 from 'web3'
 import Header from './components/Header';
+import CampaignCard from './components/CampaignCard';
 
 type AppProps = {};
 
@@ -67,9 +68,14 @@ const App: React.FC<AppProps> = () => {
    // *** await contract.methods.unstake(to).send({ from }); 의 send는 스마트 컨트랙트에 있는 함수가 아닌 web3에서 지원하는 이더리움을 보낼 수 있게 하는 함수임 
 
   return (
-    <div>
+    <div style={{ 
+      backgroundImage: `url(https://www.ghibli.jp/gallery/umi027.jpg)`, 
+      backgroundSize: '100% 100%',
+      height: '100vh'
+  }}>
       <Header />
       <h2></h2>
+      <CampaignCard/>
       <label>
         기부 금액:
         <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
