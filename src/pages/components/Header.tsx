@@ -11,7 +11,7 @@ const Header = () => {
       }}
     >
       <h1 style={{ fontSize: "24px", fontWeight: "bold", cursor: "pointer" }}>
-        로고
+        Chaination
       </h1>
 
       <div>
