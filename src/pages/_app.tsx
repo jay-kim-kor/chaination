@@ -71,11 +71,24 @@ const App: React.FC<AppProps> = () => {
     <div style={{ 
       backgroundImage: `url(https://www.ghibli.jp/gallery/umi027.jpg)`, 
       backgroundSize: '100% 100%',
-      height: '100vh'
+      height: '100vh',
+      margin:0,
+      maxWidth:"1200px",
   }}>
-      <Header />
+      <Header/>
       <h2></h2>
-      <CampaignCard/>
+      <div 
+      style = {{ 
+        width: "100vw",
+        height: "100vh",
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginLeft:"20px",
+        marginRight:"20px",
+        }}>
+        <CampaignCard/>
+        </div>
       <label>
         기부 금액:
         <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
