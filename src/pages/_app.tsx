@@ -14,7 +14,6 @@ type DonateContract = {
   }
 }
 
-
 const App: React.FC<AppProps> = () => {
   const [amount, setAmount] = useState<number>(0); // 값을 상태에 저장 
   const [beneficiary, setBeneficiary] = useState<string>(''); // 수혜자 주소를 상태에 저장 
