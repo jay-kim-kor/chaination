@@ -3,6 +3,7 @@ import Donate from '../truffle_abis/Donate.json';
 import Web3 from 'web3'
 import Header from './components/Header';
 import CampaignCard from './components/CampaignCard';
+import '../styles/globals.css';
 
 type AppProps = {};
 
@@ -68,40 +69,27 @@ const App: React.FC<AppProps> = () => {
    // *** await contract.methods.unstake(to).send({ from }); 의 send는 스마트 컨트랙트에 있는 함수가 아닌 web3에서 지원하는 이더리움을 보낼 수 있게 하는 함수임 
 
   return (
-    <div style={{ 
-      backgroundImage: `url(https://www.ghibli.jp/gallery/umi027.jpg)`, 
-      backgroundSize: '100% 100%',
-      height: '100vh',
-      margin:0,
-      maxWidth:"1200px",
-  }}>
-      <Header/>
-      <h2></h2>
-      <div 
-      style = {{ 
-        width: "100vw",
-        height: "100vh",
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        marginLeft:"20px",
-        marginRight:"20px",
-        }}>
-        <CampaignCard/>
-        </div>
-      <label>
-        기부 금액:
-        <input type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/ }
-      </label>
-      <br />
-      <label>
-        수혜자:
-        <input type="text" id="benefit" value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} /> {/* 실시간으로 입렼칸에 저장된 수혜자 주소들을 Beneficiary 상태에 저장함 ( 다른 함수에서도 쓸 수 있게)*/}
-      </label>
-      <br />
-      <button onClick={handleDonate}>Donate</button>
-      <button onClick={transferDonate}>Transfer</button>
-    </div>
+    <div className="h-screen bg-cover" style={{ backgroundImage: "url('background-image-url')" }}>
+  <Header />
+  <h2></h2>
+  <div className="w-screen h-screen flex justify-center items-center">
+    <CampaignCard/>
+  </div>
+  <label className="block mt-4">
+    <span className="text-gray-700">기부 금액:</span>
+    <input className="form-input mt-1 block w-full" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/}
+  </label>
+  <label className="block mt-4">
+    <span className="text-gray-700">수혜자:</span>
+    <input className="form-input mt-1 block w-full" type="text" id="benefit" value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} /> {/* 실시간으로 입령칸에 저장된 수혜자 주소들을 Beneficiary 상태에 저장함 ( 다른 함수에서도 쓸 수 있게)*/}
+  </label>
+  <div className="mt-4">
+    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md mr-2 hover:bg-red-500" onClick={handleDonate}>Donate</button>
+    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md mr-2 hover:bg-red-500" onClick={transferDonate}>Transfer</button>
+    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-red-500" >Click me!</button>
+  </div>
+  
+</div>
   );
 }
 

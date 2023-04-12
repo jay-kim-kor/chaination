@@ -11,7 +11,7 @@ const CampaignCard = () => {
         borderRadius: "10px",
         padding: "20px",
         margin: "0 auto",
-        width: "185vh",
+        width: "85vw",
         height: "70vh",
         flexDirection: "column",
         textAlign: "center",
