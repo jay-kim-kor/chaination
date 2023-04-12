@@ -1,61 +1,33 @@
 const Header = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        background: "Black",
-        color: "white",
-        padding: "20px",
-      }}
-    >
-      <h1 style={{ fontSize: "24px", fontWeight: "bold", cursor: "pointer" }}>
-        Chaination
-      </h1>
+  const currentDay = new Date();
+  const currentYear = currentDay.getFullYear();
 
-      <div>
-        <a
-          style={{
-            color: "white",
-            marginRight: "20px",
-            cursor: "pointer",
-            textDecoration: "none",
-            borderBottom: "1px solid white",
-          }}
-        >
-          기부하기
-        </a>
-        <a
-          style={{
-            marginRight: "20px",
-            cursor: "pointer",
-            textDecoration: "none",
-            borderBottom: "1px solid white",
-          }}
-        >
-          내 정보
-        </a>
-        <a
-          style={{
-            marginRight: "20px",
-            cursor: "pointer",
-            textDecoration: "none",
-            borderBottom: "1px solid white",
-          }}
-        >
-          로그인
-        </a>
-        <a
-          style={{
-            cursor: "pointer",
-            textDecoration: "none",
-            borderBottom: "1px solid white",
-          }}
-        >
-          검색
-        </a>
-      </div>
+  return (
+    <div>
+      <header className="fixed inset-x-0 top-0 z-50 left-0 bg-white text-gray-700 body-font border-b border-gray-200">
+        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <div
+            className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+          >
+            <img alt="logo" src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSStk3c-ZBj1qmxvetPbCkHuqolL5n85lvB4w&usqp=CAU'} className="w-8 h-8 -mr-1" />
+            <span className="ml-3 text-xl text-indigo-500 text-red-300">기현이에게 주는 신의 물질</span>
+          </div>
+          <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
+            >기부하기
+            </div>
+            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
+            >내 정보
+            </div>
+            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
+            >로그인
+            </div>
+            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
+            >검색
+            </div>
+          </nav>
+        </div>
+      </header>
     </div>
   );
 };
