@@ -3,6 +3,7 @@ import Donate from '../truffle_abis/Donate.json';
 import Web3 from 'web3'
 import Header from './components/Header';
 import CampaignCard from './components/CampaignCard';
+import Main from './components/Main';
 import '../styles/globals.css';
 
 type AppProps = {};
@@ -69,7 +70,7 @@ const App: React.FC<AppProps> = () => {
 
   return (
     <div className="h-screen bg-cover" style={{ backgroundImage: "url('background-image-url')" }}>
-  <Header />
+  <Main/>
   <h2></h2>
   <div className="w-screen h-screen flex justify-center items-center">
     <CampaignCard/>
