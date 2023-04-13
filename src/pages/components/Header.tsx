@@ -1,6 +1,17 @@
+import React, {useState} from "react";
+import Body from "./Body";
+
 const Header = () => {
-  const currentDay = new Date();
-  const currentYear = currentDay.getFullYear();
+  const [bodyVisible, setBodyVisible] = useState(false);
+
+  const handleDonateClick = () => {
+    setBodyVisible(true);
+  };
+
+  const handleClose = () => {
+    setBodyVisible(false);
+  }
+  
 
   return (
     <div>
@@ -13,7 +24,7 @@ const Header = () => {
             <span className="ml-3 text-xl text-indigo-500 text-red-300">기현이에게 주는 신의 물질</span>
           </div>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
+            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer" onClick={handleDonateClick}
             >기부하기
             </div>
             <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer"
@@ -28,6 +39,7 @@ const Header = () => {
           </nav>
         </div>
       </header>
+      <Body bodyVisible={bodyVisible} onClose={handleClose} />
     </div>
   );
 };
