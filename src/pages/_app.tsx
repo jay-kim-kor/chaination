@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Donate from '../truffle_abis/Donate.json'; 
 import Web3 from 'web3'
 import Header from './components/Header';
-import CampaignCard from './components/CampaignCard';
 import Main from './components/Main';
 import '../styles/globals.css';
 
@@ -73,7 +72,6 @@ const App: React.FC<AppProps> = () => {
   <Main/>
   <h2></h2>
   <div className="w-screen h-screen flex justify-center items-center">
-    <CampaignCard/>
   </div>
   <label className="block mt-4">
     <span className="text-gray-700">기부 금액:</span>
