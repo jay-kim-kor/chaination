@@ -8,7 +8,7 @@ const campaigns: CampaignCardProps[] = [
     description: '택현이의 런처를 위해 골드를 기부해주세요',
     duration: "2023-04-15 - 2023-05-16",
     goal: 500000,
-    currentAmount: 3000,
+    currentAmount: 500000,
   },
   {
     imageUrl: 'https://www.ghibli.jp/gallery/umi004.jpg',

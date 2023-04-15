@@ -20,7 +20,7 @@ const Header = () => {
           <div
             className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
           >
-            <img alt="logo" src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSStk3c-ZBj1qmxvetPbCkHuqolL5n85lvB4w&usqp=CAU'} className="w-8 h-8 -mr-1" />
+            <img alt="logo" src={'https://icon-library.com/images/donate-icon-png/donate-icon-png-4.jpg'} className="w-8 h-8 -mr-1" />
             <span className="ml-3 text-xl text-indigo-500 text-red-300">기현이에게 주는 신의 물질</span>
           </div>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
