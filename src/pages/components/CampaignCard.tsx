@@ -40,8 +40,8 @@ const CampaignCard = ({ imageUrl, title, description, goal, currentAmount, durat
           <p className="text-sm text-gray-500 mb-4">{description}</p>
           <CampaignBar goal={goal} currentAmount={current} />
           <div className="flex justify-between mt-4">
-            <div className="text-gray-500 text-sm">목표 모금액: {goal}원</div>
-            <div className="text-gray-500 text-sm">{goal - current}원 남음</div>
+            <div className="text-gray-500 text-sm">목표 모금액: {goal}ETH</div>
+            <div className="text-gray-500 text-sm">{goal - current}ETH 남음</div>
           </div>
           <button onClick={handleDonate} className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             기부하기
