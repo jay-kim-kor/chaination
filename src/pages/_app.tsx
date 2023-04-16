@@ -70,24 +70,7 @@ const App: React.FC<AppProps> = () => {
   return (
     <div className="h-screen bg-cover" style={{ backgroundImage: "url('background-image-url')" }}>
   <Main/>
-  <h2></h2>
-  <div className="w-screen h-screen flex justify-center items-center">
-  </div>
-  <label className="block mt-4">
-    <span className="text-gray-700">기부 금액:</span>
-    <input className="form-input mt-1 block w-full" type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} /> {/* 실시간으로 입력칸에 저장된 값들을 Amount 상태에 저장함 (다른 함수에서도 쓸 수 있게)*/}
-  </label>
-  <label className="block mt-4">
-    <span className="text-gray-700">수혜자:</span>
-    <input className="form-input mt-1 block w-full" type="text" id="benefit" value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} /> {/* 실시간으로 입령칸에 저장된 수혜자 주소들을 Beneficiary 상태에 저장함 ( 다른 함수에서도 쓸 수 있게)*/}
-  </label>
-  <div className="mt-4">
-    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md mr-2 hover:bg-red-500" onClick={handleDonate}>Donate</button>
-    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md mr-2 hover:bg-red-500" onClick={transferDonate}>Transfer</button>
-    <button className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-red-500" >Click me!</button>
-  </div>
-  
-</div>
+    </div>
   );
 }
 
