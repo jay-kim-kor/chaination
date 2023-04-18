@@ -1,7 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## The Branch for Saelma's Development 
 
+//// Saelma의 Branch, 기존의 'develop'는 오로지 버튼들을 추가하고, 디자인이 적용되지 않았으나,
+2023/04/19부터 01:30경 기준 웹 디자인 적용된 브랜치에 스테이킹과 언스테이킹 버튼을 추가했습니다
+각 캠페인카드마다 각기다른 수혜자주소에게 스테이킹과 언스테이킹이 되도록 하였습니다 
+브랜치 하나 더 박은 이유는, 새로 박은 웹디자인이 설치할게 너무 많아서 이주절차를 제대로 밟고 왔습니다 
 
 ## 프로그램 설치 및 실행을 위한 절차 
 ```bash
