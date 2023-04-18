@@ -27,6 +27,7 @@ const campaigns: CampaignCardProps[] = [
     description: '캠페인에 대한 설명을 작성해주세요',
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
+    currentAmount : 0,
     beneficiary: '0x9d0F20729Baf5DE11AaDFda2929BAA24e3C526B6',
   },
   {
@@ -35,6 +36,7 @@ const campaigns: CampaignCardProps[] = [
     description: '캠페인에 대한 설명을 작성해주세요',
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,
+    currentAmount : 2000,
     beneficiary: '0x3EC7fb4c6A1B0b2989191Cf1ce039F9831AEe156',
   },
 ];
