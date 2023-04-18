@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+import Transfer from './_Transfer';
+import Donate from '../../truffle_abis/Donate.json';
 import Link from 'next/link';
 
 interface CampaignCardProps {
@@ -8,7 +11,10 @@ interface CampaignCardProps {
   duration: string;
   goal: number;
   currentAmount: number;
+  beneficiary: string[]
+  index: number;
 }
+
 
 const CampaignBar = ({ goal, currentAmount }: { goal: number, currentAmount: number }) => {
   const percentage = currentAmount / goal * 100;
@@ -22,8 +28,29 @@ const CampaignBar = ({ goal, currentAmount }: { goal: number, currentAmount: num
   );
 };
 
-const CampaignCard = ({ imageUrl, title, description, goal, currentAmount, duration }: CampaignCardProps) => {
+const CampaignCard = ({ imageUrl, title, description, goal, currentAmount, duration, beneficiary, index}: CampaignCardProps) => {
+  const [web3, setWeb3] = useState<Web3 | undefined>();
+  const [accounts, setAccounts] = useState<string[]>([]);
+  const [contracts, setContracts] = useState<any[]>([]); // 모든 contract 인스턴스를 저장하는 배열
   const [current, setCurrent] = useState(currentAmount);
+  console.log(beneficiary)
+
+  useEffect(() => {
+    const init = async () => {
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.enable();
+      setWeb3(web3);
+      const networkId = await web3.eth.net.getId();
+      const contractAddress = Donate.networks[networkId].address;
+      const contractAbi = Donate.abi;
+      const instances = beneficiary.map(beneficiaries => new web3.eth.Contract(contractAbi, contractAddress));
+      setContracts(instances);
+      const accounts = await web3.eth.getAccounts();
+      setAccounts(accounts);
+      console.log(beneficiary)
+    };
+    init();
+  }, [beneficiary]);
 
   const handleDonate = () => {
     setCurrent(current + 10); // Donate 10 units
@@ -46,6 +73,8 @@ const CampaignCard = ({ imageUrl, title, description, goal, currentAmount, durat
           <button onClick={handleDonate} className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
             기부하기
           </button>
+          <Transfer beneficiary={beneficiary} contract={contracts[index]} web3={web3} accounts={accounts}
+                donationId={index}/>
         </div>
       </div>
       </Link>
