@@ -7,6 +7,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 각 캠페인카드마다 각기다른 수혜자주소에게 스테이킹과 언스테이킹이 되도록 하였습니다 
 브랜치 하나 더 박은 이유는, 새로 박은 웹디자인이 설치할게 너무 많아서 이주절차를 제대로 밟고 왔습니다 
 
+## 중요
+Main.tsx에서 보면 현재 수혜자 주소가 제 PC의 가나슈 기준 주소로 설정되어 있으니 자신의 가나슈 주소에 맞게 변경하시기 바랍니다
+
 ## 프로그램 설치 및 실행을 위한 절차 
 ```bash
 1. npm install
