@@ -1,3 +1,5 @@
+//헤더에서 기부하기 클릭
+
 interface BodyProps{
     bodyVisible: boolean;
     onClose: () => void;
