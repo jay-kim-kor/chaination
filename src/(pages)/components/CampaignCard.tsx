@@ -59,8 +59,8 @@ const CampaignCard = ({
       await window.ethereum.enable();
       setWeb3(web3);
       const networkId = await web3.eth.net.getId();
-      const contractAddress = Donate.networks[networkId].address;
-      const contractAbi = Donate.abi;
+      const contractAddress = Donate.networks[`${networkId}`].address;
+      const contractAbi: any = Donate.abi;
       const instances = beneficiary.map(
         (beneficiaries) => new web3.eth.Contract(contractAbi, contractAddress)
       );
