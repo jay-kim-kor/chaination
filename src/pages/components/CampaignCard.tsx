@@ -32,7 +32,6 @@ const CampaignBar = ({
       >
         {percentage}%
       </div>
-    </div>
   );
 };
 
