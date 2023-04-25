@@ -8,6 +8,7 @@ import CampaignCard, {
 } from "./(AppComponents)/CampaignCard";
 
 export default function Page() {
+  const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
   return (
     <>
       <div className="container mx-auto px-4">
@@ -16,11 +17,12 @@ export default function Page() {
         </h1>
         <div className="flex-col justify-center items-center space-y-4">
           {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
-          {campaigns.map((campaign: ICampaignCardProps) => (
+          {campaigns.map((campaign: ICampaignCardProps, index: number) => (
             <CampaignCard
               {...campaign}
               key={campaign.id}
-              beneficiary={campaign.beneficiary}
+              beneficiary={beneficiaries}
+              index={index}
             />
           ))}
         </div>
