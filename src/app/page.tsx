@@ -10,21 +10,20 @@ import CampaignCard, {
 export default function Page() {
   return (
     <>
-      {/* <Header /> */}
       <div className="container mx-auto px-4">
         <h1 className="text-3xl text-white font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-purple-500 py-4">
           여러분의 따스한 마음을 기부하세요
         </h1>
-        {/* <div className="flex-col justify-center items-center space-y-4"> */}
-        {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
-        {/* {campaigns.map((campaign: ICampaignCardProps) => (
+        <div className="flex-col justify-center items-center space-y-4">
+          {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
+          {campaigns.map((campaign: ICampaignCardProps) => (
             <CampaignCard
               {...campaign}
               key={campaign.id}
-              beneficiary={beneficiarys}
+              beneficiary={campaign.beneficiary}
             />
           ))}
-        </div> */}
+        </div>
       </div>
     </>
   );
