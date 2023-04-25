@@ -32,15 +32,13 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, accoun
     const accounts = await web3.eth.getAccounts();
     const amountInWei = web3.utils.toWei(amount.toString());
     const balance = await web3.eth.getBalance(accounts[0])
-    console.log(balance)
         
     await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value:amountInWei}); 
     
     handlesDonate(amount)
 
-    console.log(`Donation of ${amount} ETH successful`);
+    alert(`${amount}ETH만큼 기부했습니다!`)
     setStaking(amountInWei);
-    console.log(contract)
   }
 
   async function transferDonate(): Promise<void>{
