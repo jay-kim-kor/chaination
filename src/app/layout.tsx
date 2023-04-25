@@ -1,5 +1,9 @@
-import "../styles/globals.css";
-import Headers from "./header";
+import Header from "./(AppComponents)/Header";
+
+export const metadata = {
+  title: "Chaination",
+  description: "블록체인 기반 기부 플랫폼",
+};
 
 export default function RootLayout({
   children,
@@ -7,11 +11,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <head />
-      <body className="border-4 border-red-400 p-2 w-full">
-        <Headers />
-        {children}
+    <html lang="ko">
+      <body>
+        <Header />
+        <div className="pt-24">{children}</div>
       </body>
     </html>
   );
