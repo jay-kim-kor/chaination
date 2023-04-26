@@ -1,5 +1,6 @@
-name: 버그 신고
-description: 버그를 신고해주세요.
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
   - octocat
