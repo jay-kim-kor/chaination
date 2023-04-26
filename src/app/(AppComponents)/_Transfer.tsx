@@ -5,9 +5,7 @@ import React, { useState, useEffect } from 'react';
 type TransferProps = {
   beneficiary: string[];
   contract: DonateContract;
-  accounts: string[];
   donationId: number;
-  current: number;
   handlesDonate: Function;
 };
 
@@ -18,9 +16,8 @@ type DonateContract = {
   }
 }
 
-const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, accounts, donationId, current, handlesDonate}) => {
+const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, handlesDonate}) => {
   const [amount, setAmount] = useState<number>(0);
-  const [staking, setStaking] = useState<string | undefined>();
 
   
   async function handleDonate(): Promise<void> {
@@ -31,14 +28,9 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, accoun
 
     const accounts = await web3.eth.getAccounts();
     const amountInWei = web3.utils.toWei(amount.toString());
-    const balance = await web3.eth.getBalance(accounts[0])
-        
     await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value:amountInWei}); 
-    
     handlesDonate(amount)
-
     alert(`${amount}ETH만큼 기부했습니다!`)
-    setStaking(amountInWei);
   }
 
   async function transferDonate(): Promise<void>{
@@ -46,7 +38,6 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, accoun
     const from = accounts[0]
     const beneficiaries = [beneficiary[donationId]];
     await contract.methods.unstake(beneficiaries, donationId).send({ from });
-    console.log(`Unstaking of ${staking} ETH successful from ${from}`);
   }
 
   return (

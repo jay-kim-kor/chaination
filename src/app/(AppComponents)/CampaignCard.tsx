@@ -53,7 +53,6 @@ export default function CampaignCard({
   const [contracts, setContracts] = useState<any[]>([]); // 모든 contract 인스턴스를 저장하는 배열
   const [amount, setAmount] = useState<number>(0);
   const [current, setCurrent] = useState(currentAmount);
-  console.log(beneficiary);
 
   useEffect(() => {
     const init = async () => {
@@ -67,9 +66,6 @@ export default function CampaignCard({
         (beneficiaries) => new web3.eth.Contract(contractAbi, contractAddress)
       );
       setContracts(instances);
-      const accounts = await web3.eth.getAccounts();
-      setAccounts(accounts);
-      console.log(beneficiary);
     };
     init();
   }, [beneficiary]);
@@ -81,8 +77,8 @@ export default function CampaignCard({
 
   return (
     <div className="flex-grow w-full md:w-full p-4">
-      <Link href={`/campaign/${title}`}>
         <div className="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden">
+        <Link href={`/campaign/${title}`}>
           <img
             src={imageUrl}
             alt={title}
@@ -101,19 +97,18 @@ export default function CampaignCard({
                 {goal - current}ETH 남음
               </div>
             </div>
-            <Transfer
+          </div>
+          </Link>
+          <Transfer
               beneficiary={beneficiary}
               contract={contracts[index]}
               web3={web3}
-              accounts={accounts}
               donationId={index}
               amounts={amount}
               current={current}
               handlesDonate={handlesDonate}
             />
-          </div>
         </div>
-      </Link>
     </div>
   );
 }
