@@ -1,5 +1,5 @@
-name: "버그 신고"
-description: File a bug report
+name: Bug Report
+description: 버그가 발생할 경우 작성해주세요.
 title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
