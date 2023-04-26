@@ -57,7 +57,9 @@ export default function CampaignCard({
   useEffect(() => {
     const init = async () => {
       const web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
+      if(!web3){
+        return;
+      }
       setWeb3(web3);
       const networkId = await web3.eth.net.getId();
       const contractAddress = Donate.networks[`${networkId}`].address;
