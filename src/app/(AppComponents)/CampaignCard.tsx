@@ -25,14 +25,15 @@ const CampaignBar = ({
   currentAmount: number;
 }) => {
   const percentage = (currentAmount / goal) * 100;
+  const intPercentage = Math.floor(percentage);
 
   return (
     <div className="bg-gray-200 rounded-full w-full">
       <div
         className="bg-indigo-500 text-xs leading-none py-1 text-center text-white rounded-full"
-        style={{ width: `${percentage}%` }}
+        style={{ width: `${intPercentage}%` }}
       >
-        {percentage}%
+        {intPercentage}%
       </div>
     </div>
   );
