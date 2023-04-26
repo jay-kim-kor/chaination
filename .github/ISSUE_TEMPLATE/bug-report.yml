@@ -1,4 +1,4 @@
-name: Bug Report
+name: 버그 신고
 description: File a bug report
 title: "[Bug]: "
 labels: ["bug", "triage"]
