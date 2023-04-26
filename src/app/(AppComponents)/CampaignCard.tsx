@@ -57,7 +57,7 @@ export default function CampaignCard({
   useEffect(() => {
     const init = async () => {
       const web3 = new Web3(window.ethereum);
-      if(!web3){
+      if(!web3){ // 현재 접속한 브라우저에 메타마스크가 없으면 아래부분들을 실행하지 않겠다는 부문 
         return;
       }
       setWeb3(web3);
