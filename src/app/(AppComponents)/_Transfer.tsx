@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-
+import React, { useState} from 'react';
 
 type TransferProps = {
   beneficiary: string[];
@@ -21,23 +20,31 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
 
   
   async function handleDonate(): Promise<void> {
-    if(!web3){
-      console.log("메타마스크 로그인이 필요합니다.")
-      return;
-      }
-
     const accounts = await web3.eth.getAccounts();
     const amountInWei = web3.utils.toWei(amount.toString());
+    if(!accounts[0]){
+      alert("메타마스크 로그인이 필요합니다.")
+      return;
+    }
     await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value:amountInWei}); 
     handlesDonate(amount)
     alert(`${amount}ETH만큼 기부했습니다!`)
-  }
+    }
 
   async function transferDonate(): Promise<void>{
     const accounts = await web3.eth.getAccounts();  
     const from = accounts[0]
+    if(!from){
+      alert("메타마스크 로그인이 필요합니다.")
+      return;
+    }
     const beneficiaries = [beneficiary[donationId]];
-    await contract.methods.unstake(beneficiaries, donationId).send({ from });
+    if(from == beneficiary[donationId]){
+      await contract.methods.unstake(beneficiaries, donationId).send({ from });
+    }else{
+      alert("캠페인에 등록된 주소가 아니면 금액 전송이 불가능합니다!")
+      return; 
+    }
   }
 
   return (

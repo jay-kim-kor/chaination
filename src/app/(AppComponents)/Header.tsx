@@ -3,6 +3,7 @@ import Image from "next/image";
 // next/image는 src에 들어갈 경로를 미리 불러와야 함
 import logo from "../../../public/donate-logo.png";
 import Link from "next/link";
+import MetamaskInfo from "./MetamaskInfo";
 
 export default function Header() {
   return (
@@ -30,9 +31,7 @@ export default function Header() {
                 내 정보
               </div>
             </Link>
-            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer">
-              로그인
-            </div>
+            <MetamaskInfo />
             <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer">
               검색
             </div>
