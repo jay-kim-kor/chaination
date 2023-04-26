@@ -1,7 +1,5 @@
 name: 버그 신고
 description: 버그를 신고해주세요.
-title:
-  placeholder: 버그 제목
 labels: ["bug", "triage"]
 assignees:
   - octocat
