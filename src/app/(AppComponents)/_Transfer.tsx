@@ -19,7 +19,6 @@ type DonateContract = {
 const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, handlesDonate, nowDonating}) => {
   const [amount, setAmount] = useState<number>(0);
 
-  
   async function handleDonate(): Promise<void> {
     console.log(nowDonating)
     const accounts = await web3.eth.getAccounts();
@@ -31,8 +30,7 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
     await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value:amountInWei}); 
     handlesDonate(amount)
     alert(`${amount}ETH만큼 기부했습니다!`)
-    nowDonating = true;
-    console.log(nowDonating)
+    sessionStorage.setItem(`nowDonating-${donationId}-${accounts[0]}`, 'true');
     }
 
   async function transferDonate(): Promise<void>{
