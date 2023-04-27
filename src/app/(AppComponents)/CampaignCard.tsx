@@ -112,7 +112,6 @@ export default function CampaignCard({
               amounts={amount}
               current={current}
               handlesDonate={handlesDonate}
-              nowDonating={nowDonating}
             />
         </div>
     </div>

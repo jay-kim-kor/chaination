@@ -9,7 +9,6 @@ import CampaignCard, {
 
 export default function Page() {
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
-  const nowDonatings: boolean[] = campaigns.map((campaign, index) => campaign.nowDonating);
   return (
     <>
       <div className="container mx-auto px-4">

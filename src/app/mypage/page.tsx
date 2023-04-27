@@ -11,13 +11,15 @@ import { campaigns } from '../page'
 type Props = {};
 
 export default function MyInfo({}: Props) {
-  const nowDonatings: string[] = campaigns.map((campaign, index) => campaign.nowDonating);
-  console.log(nowDonatings)
+  const [nowDonatingsState, setNowDonatingsState] = useState<boolean[]>([]);
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
+  const nowDonatings: boolean[] = campaigns.map((campaign, index) => campaign.nowDonating);
 
   const [accountId, setAccountId] = useState<string>("");
 
   useEffect(() => {
+    setNowDonatingsState(nowDonatings);
+
     // Web3 객체 생성
     const web3 = new Web3(Web3.givenProvider);
 
@@ -31,9 +33,19 @@ export default function MyInfo({}: Props) {
     getCurrentAccount().then((account) => {
       setAccountId(account);
     });
-  }, []);
 
- 
+    // 웹페이지 세션 저장소에 현재 접속한 메타마스크 계정 주소를 기준으로 저장된 true를 받음 
+    // 그 값을 useState에 저장  
+    const nowDonatingsFromLocalStorage = campaigns.map((campaign, index) => {
+      const nowDonatingState = sessionStorage.getItem(`nowDonating-${index}-${accountId}`) === 'true';
+      return nowDonatingState;
+    });
+    setNowDonatingsState(nowDonatingsFromLocalStorage); 
+
+
+  }, [nowDonatingsState]);
+  console.log(nowDonatingsState)
+
 
   return (
     <div className="container mx-auto px-4 pt-24">
@@ -68,7 +80,7 @@ export default function MyInfo({}: Props) {
         </div> */}
          <div className="flex-col justify-center items-center space-y-4">
           {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
-          {campaigns.filter((campaign) => campaign.nowDonating).map((campaign: ICampaignCardProps, index: number) => (
+          {campaigns.filter((campaign,index) => nowDonatingsState[index]).map((campaign: ICampaignCardProps, index: number) => (
           <CampaignCard
            {...campaign}
            key={campaign.id}
