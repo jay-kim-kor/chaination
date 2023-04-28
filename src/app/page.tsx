@@ -2,12 +2,9 @@
 // 관련 설정은  tailwind.config.js와 https://beta.nextjs.org/docs/styling/tailwind-css 글 참고
 import "../styles/globals.css";
 import Header from "./(AppComponents)/Header";
-import CampaignCard, {
-  ICampaignCardProps,
-} from "./(AppComponents)/CampaignCard";
+import CampaignList from "./(AppComponents)/CampaignList";
 
 export default function Page() {
-  const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
 
   return (
     <>
@@ -15,17 +12,7 @@ export default function Page() {
         <h1 className="text-3xl text-white font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-purple-500 py-4">
           여러분의 따스한 마음을 기부하세요
         </h1>
-        <div className="flex-col justify-center items-center space-y-4">
-          {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
-          {campaigns.map((campaign: ICampaignCardProps, index: number) => (
-            <CampaignCard
-              {...campaign}
-              key={campaign.id}
-              beneficiary={beneficiaries}
-              index={index}
-            />
-          ))}
-        </div>
+        <CampaignList campaigns={campaigns} />
       </div>
     </>
   );
