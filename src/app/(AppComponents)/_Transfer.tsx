@@ -1,5 +1,6 @@
 "use client";
 import React, { useState} from 'react';
+import Web3 from 'web3'
 
 type TransferProps = {
   beneficiary: string[];
@@ -7,6 +8,7 @@ type TransferProps = {
   donationId: number;
   handlesDonate: Function;
   nowDonating: boolean;
+  accounts: string;
 };
 
 type DonateContract = {
@@ -16,8 +18,11 @@ type DonateContract = {
   }
 }
 
-const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, handlesDonate, nowDonating}) => {
+const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, handlesDonate, accounts}) => {
   const [amount, setAmount] = useState<number>(0);
+  console.log(accounts)
+  console.log(beneficiary[donationId])
+
 
   async function handleDonate(): Promise<void> {
     const accounts = await web3.eth.getAccounts();
@@ -48,23 +53,37 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
     }
   }
 
-  return (
-    <div>
-      <label className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        Amount:
-        <input className="mt-4 px-4 py-1.5 bg-indigo-500 text-white rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-indigo-470"
-        type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
-      </label>
-      <br />
-      <br />
-      <div className="text-gray-500 text-sm">
-      <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" 
-      onClick={handleDonate}>Donate</button>
-      <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-      onClick={transferDonate}>Transfer</button>
+
+  if (accounts == beneficiary[donationId]) {
+    return (
+      <div>
+        <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onClick={transferDonate}>Transfer</button>
+        <br />
+        <br />
+        <div className="text-gray-500 text-sm">
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+         <label className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          Amount:
+          <input className="mt-4 px-4 py-1.5 bg-indigo-500 text-white rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-indigo-470"
+            type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+        </label>
+        <br />
+        <br />
+        <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+          onClick={handleDonate}>Donate</button>
+        <br />
+        <br />
+        <div className="text-gray-500 text-sm">
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Transfer;

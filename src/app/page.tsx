@@ -42,7 +42,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
     currentAmount: 300000,
-    beneficiary: "0x5ada2C5ccf1860BdaaEca022C01F4d86542D3F12",
+    beneficiary: "0x996540f542161F9728A8FF04f2f472c243eDA13A",
     nowDonating: true,
   },
   {
@@ -54,7 +54,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
     currentAmount: 5000,
-    beneficiary: "0x8230976910b329d1c2245E887Acb3EbE16A5C8e6",
+    beneficiary: "0x42684B4ed6268965b585a7e331B51bAe5c53fe9c",
     nowDonating: false,
   },
   {
@@ -66,7 +66,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
     currentAmount: 0,
-    beneficiary: "0x9d0F20729Baf5DE11AaDFda2929BAA24e3C526B6",
+    beneficiary: "0xE31dA464577D6Ce2511D14897CE9D87B0b5FB3aF",
     nowDonating: false,
   },
   {
@@ -78,7 +78,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,
     currentAmount: 2000,
-    beneficiary: "0x3EC7fb4c6A1B0b2989191Cf1ce039F9831AEe156",
+    beneficiary: "0x9c7c5d50ed4b0049Ce2Fd1Bd8B2A8b9F49B24DBA",
     nowDonating: false,
   },
 ];
