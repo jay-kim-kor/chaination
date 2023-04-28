@@ -6,6 +6,13 @@ const MetamaskInfo: React.FC = () => {
     const [LoggedIn, setLoggedIn] = useState<boolean>(false);
     const [account, setAccount] = useState<string>("");
 
+    useEffect(()=>{
+        if (window.ethereum && window.ethereum.selectedAddress) {
+            setLoggedIn(true);
+            setAccount(window.ethereum.selectedAddress);
+        }
+    }, [])
+
     async function MetamaskLogin(){
         const web3 = new Web3(window.ethereum);
         if(!web3){ alert("메타마스크를 설치해주세요"); return; }
