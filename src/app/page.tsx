@@ -32,28 +32,30 @@ export default function Page() {
 }
 
 // 캠페인 카드를 생성할 때 사용할 데이터
-const campaigns: ICampaignCardProps[] = [
+export const campaigns: ICampaignCardProps[] = [
   {
     id: 1,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요",
+    title: "캠페인 제목을 작성해주세요1",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
     currentAmount: 300000,
     beneficiary: "0x5ada2C5ccf1860BdaaEca022C01F4d86542D3F12",
+    nowDonating: true,
   },
   {
     id: 2,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요",
+    title: "캠페인 제목을 작성해주세요2",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
     currentAmount: 5000,
     beneficiary: "0x8230976910b329d1c2245E887Acb3EbE16A5C8e6",
+    nowDonating: false,
   },
   {
     id: 3,
@@ -65,6 +67,7 @@ const campaigns: ICampaignCardProps[] = [
     goal: 10000,
     currentAmount: 0,
     beneficiary: "0x9d0F20729Baf5DE11AaDFda2929BAA24e3C526B6",
+    nowDonating: false,
   },
   {
     id: 4,
@@ -76,5 +79,6 @@ const campaigns: ICampaignCardProps[] = [
     goal: 1000000,
     currentAmount: 2000,
     beneficiary: "0x3EC7fb4c6A1B0b2989191Cf1ce039F9831AEe156",
+    nowDonating: false,
   },
 ];

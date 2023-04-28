@@ -15,6 +15,7 @@ export interface ICampaignCardProps {
   goal: number;
   currentAmount: number;
   beneficiary: string[];
+  nowDonating: boolean;
 }
 
 const CampaignBar = ({
@@ -48,6 +49,7 @@ export default function CampaignCard({
   duration,
   beneficiary,
   index,
+  nowDonating,
 }: ICampaignCardProps) {
   const [web3, setWeb3] = useState<Web3 | undefined>();
   const [accounts, setAccounts] = useState<string[]>([]);
