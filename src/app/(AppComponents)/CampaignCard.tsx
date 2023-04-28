@@ -52,7 +52,7 @@ export default function CampaignCard({
   nowDonating,
 }: ICampaignCardProps) {
   const [web3, setWeb3] = useState<Web3 | undefined>();
-  const [accounts, setAccounts] = useState<string[]>([]);
+  const [accounts, setAccounts] = useState<string>();
   const [contracts, setContracts] = useState<any[]>([]); // 모든 contract 인스턴스를 저장하는 배열
   const [amount, setAmount] = useState<number>(0);
   const [current, setCurrent] = useState(currentAmount);
@@ -65,12 +65,15 @@ export default function CampaignCard({
       }
       setWeb3(web3);
       const networkId = await web3.eth.net.getId();
+      const accounts = await web3.eth.getAccounts();
+      console.log(accounts)
       const contractAddress = Donate.networks[`${networkId}`].address;
       const contractAbi: any = Donate.abi;
       const instances = beneficiary.map(
         (beneficiaries) => new web3.eth.Contract(contractAbi, contractAddress)
       );
       setContracts(instances);
+      setAccounts(accounts)
     };
     init();
   }, [beneficiary]);
@@ -110,6 +113,7 @@ export default function CampaignCard({
               web3={web3}
               donationId={index}
               amounts={amount}
+              accounts={accounts}
               current={current}
               handlesDonate={handlesDonate}
             />
