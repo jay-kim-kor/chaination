@@ -12,7 +12,6 @@ type Props = {};
 
 export default function MyInfo({ }: Props) {
   const [nowDonatingsState, setNowDonatingsState] = useState<boolean[]>([]);
-  const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
   const nowDonatings: boolean[] = campaigns.map((campaign, index) => campaign.nowDonating);
 
   const [accountId, setAccountId] = useState<string>("");
