@@ -15,7 +15,6 @@ export interface ICampaignCardProps {
   goal: number;
   currentAmount: number;
   beneficiary: string[];
-  nowDonating: boolean;
 }
 
 const CampaignBar = ({
@@ -49,13 +48,13 @@ export default function CampaignCard({
   duration,
   beneficiary,
   index,
-  nowDonating,
 }: ICampaignCardProps) {
   const [web3, setWeb3] = useState<Web3 | undefined>();
   const [accounts, setAccounts] = useState<string>();
   const [contracts, setContracts] = useState<any[]>([]); // 모든 contract 인스턴스를 저장하는 배열
   const [amount, setAmount] = useState<number>(0);
   const [current, setCurrent] = useState(currentAmount);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const init = async () => {
@@ -76,12 +75,24 @@ export default function CampaignCard({
       setAccounts(accounts)
     };
     init();
+    const handleSearchValueChange = (event: CustomEvent) => {
+      setSearchValue(event.detail);
+    };
+
+    window.addEventListener("searchValueChange", handleSearchValueChange);
+
+    return () => {
+      window.removeEventListener("searchValueChange", handleSearchValueChange);
+    };
   }, [beneficiary]);
 
   const handlesDonate = (amount: number) => {
     const updatedCurrent = current + amount;
     setCurrent(updatedCurrent); // Donate 10 units
   };
+
+  const titleHighlighted =
+  searchValue !== "" && title.toLowerCase().includes(searchValue.toLowerCase());
 
   return (
     <div className="flex-grow w-full md:w-full p-4">
@@ -93,7 +104,9 @@ export default function CampaignCard({
             className="w-full h-85 object-cover"
           />
           <div className="p-4">
-            <h2 className="text-lg font-medium mb-2">{title}</h2>
+            <h2 className={`text-lg font-medium mb-2 ${
+              titleHighlighted ? "text-red-500" : ""
+            }`}>{title}</h2>
             <p className="text-gray-500 text-sm">{duration}</p>
             <p className="text-sm text-gray-500 mb-4">{description}</p>
             <CampaignBar goal={goal} currentAmount={current} />

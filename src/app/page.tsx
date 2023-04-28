@@ -1,20 +1,26 @@
 // tailwind를 적용하려면 아래를 import해야 함
 // 관련 설정은  tailwind.config.js와 https://beta.nextjs.org/docs/styling/tailwind-css 글 참고
 import "../styles/globals.css";
-
 import Header from "./(AppComponents)/Header";
 import CampaignCard, {
   ICampaignCardProps,
 } from "./(AppComponents)/CampaignCard";
+import SearchBar from "./(AppComponents)/SearchBar";
 
 export default function Page() {
+  let SearchValue = ""
+  const handleSearch = (value: string) => {
+    SearchValue = value
+  };
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
+
   return (
     <>
       <div className="container mx-auto px-4">
         <h1 className="text-3xl text-white font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-purple-500 py-4">
           여러분의 따스한 마음을 기부하세요
         </h1>
+        <SearchBar />
         <div className="flex-col justify-center items-center space-y-4">
           {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
           {campaigns.map((campaign: ICampaignCardProps, index: number) => (
@@ -23,6 +29,7 @@ export default function Page() {
               key={campaign.id}
               beneficiary={beneficiaries}
               index={index}
+              searchValue={SearchValue}
             />
           ))}
         </div>
@@ -42,7 +49,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
     currentAmount: 300000,
-    beneficiary: "0x996540f542161F9728A8FF04f2f472c243eDA13A",
+    beneficiary: "0x5ada2C5ccf1860BdaaEca022C01F4d86542D3F12",
     nowDonating: true,
   },
   {
@@ -54,7 +61,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
     currentAmount: 5000,
-    beneficiary: "0x42684B4ed6268965b585a7e331B51bAe5c53fe9c",
+    beneficiary: "0x8230976910b329d1c2245E887Acb3EbE16A5C8e6",
     nowDonating: false,
   },
   {
@@ -66,7 +73,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
     currentAmount: 0,
-    beneficiary: "0xE31dA464577D6Ce2511D14897CE9D87B0b5FB3aF",
+    beneficiary: "0x9d0F20729Baf5DE11AaDFda2929BAA24e3C526B6",
     nowDonating: false,
   },
   {
@@ -78,7 +85,7 @@ export const campaigns: ICampaignCardProps[] = [
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,
     currentAmount: 2000,
-    beneficiary: "0x9c7c5d50ed4b0049Ce2Fd1Bd8B2A8b9F49B24DBA",
+    beneficiary: "0x3EC7fb4c6A1B0b2989191Cf1ce039F9831AEe156",
     nowDonating: false,
   },
 ];
