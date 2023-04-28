@@ -4,7 +4,6 @@ import Image from "next/image";
 import logo from "../../../public/donate-logo.png";
 import Link from "next/link";
 import MetamaskInfo from "./MetamaskInfo";
-import SearchBar from "./SearchBar"
 
 export default function Header() {
   return (
@@ -33,7 +32,6 @@ export default function Header() {
               </div>
             </Link>
             <MetamaskInfo />
-            <SearchBar />
           </nav>
         </div>
       </header>

@@ -87,3 +87,4 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
 }
 
 export default Transfer;
+export default Transfer;
