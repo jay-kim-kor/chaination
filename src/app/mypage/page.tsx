@@ -10,7 +10,7 @@ import { campaigns } from '../page'
 
 type Props = {};
 
-export default function MyInfo({}: Props) {
+export default function MyInfo({ }: Props) {
   const [nowDonatingsState, setNowDonatingsState] = useState<boolean[]>([]);
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
   const nowDonatings: boolean[] = campaigns.map((campaign, index) => campaign.nowDonating);
@@ -40,7 +40,7 @@ export default function MyInfo({}: Props) {
       const nowDonatingState = sessionStorage.getItem(`nowDonating-${index}-${accountId}`) === 'true';
       return nowDonatingState;
     });
-    setNowDonatingsState(nowDonatingsFromLocalStorage); 
+    setNowDonatingsState(nowDonatingsFromLocalStorage);
 
 
   }, [nowDonatingsState]);
@@ -50,16 +50,14 @@ export default function MyInfo({}: Props) {
   return (
     <div className="container mx-auto px-4 pt-24">
       {/*메타마스크를 표현하는 그림 */}
-      <img src="/01.png" alt="METAMASK" className="w-64 h-64 object-cover" />
-
+      <img src="/02.png" alt="METAMASK" className="object-cover" />
 
 
       {/*메타마스크와 연동시켜 내 계정 가져오기*/}
-      <div className="flex items-center">
-        <img src="/01.png" alt="이미지 설명" className="w-10 h-10" />
+      <div className="flex items-center justify-center">
         <input
           type="text"
-          className="bg-white rounded-lg shadow-md px-4 py-2 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-red-500 focus:border-transparent"
+          className="flex-grow bg-white rounded-lg shadow-md px-10 py-3 text-lg font-bold text-black placeholder-gray-400 focus:outline-none focus:ring-4 focus:ring-red-500 focus:border-transparent"
           value={accountId}
           readOnly // 수정이 불가하게 변경
           onChange={(e) => setAccountId(e.target.value)}
@@ -68,31 +66,30 @@ export default function MyInfo({}: Props) {
       </div>
 
       {/* 내 기록을 알려주는 글*/}
-      <h1 className="text-2xl font-bold">
-        내 기록
-      </h1>
+      <div className="flex items-center justify-center">
+        <h1 className="text-2xl font-bold">
+          참여 기록
+        </h1>
+      </div>
 
       {/* 캠페인카드 불러오기 */}
-      {/* <div className="flex-col justify-center items-center space-y-4">
-          {campaignss.map((campaign) => (
-            <CampaignCard {...campaign} key={campaign.title} />
-          ))}
-        </div> */}
-         <div className="flex-col justify-center items-center space-y-4">
-          {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
-          {campaigns.filter((campaign,index) => nowDonatingsState[index]).map((campaign: ICampaignCardProps, index: number) => (
+      <div>         
+        <div className="flex-col justify-center items-center space-y-4">
+        {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
+        {campaigns.filter((campaign, index) => nowDonatingsState[index]).map((campaign: ICampaignCardProps, index: number) => (
           <CampaignCard
-           {...campaign}
-           key={campaign.id}
-           beneficiary={beneficiaries}
-           index={index}
+            {...campaign}
+            key={campaign.id}
+            beneficiary={beneficiaries}
+            index={index}
           />
         ))}
         </div>
-
+      
       {/* 캠페인카드 옆에 캠페인에 내가 기부한 금액 */}
-      <div>
+        <div >
 
+        </div>
       </div>
       
       {/* 내 전체 기록 */}
