@@ -43,8 +43,7 @@ export default function MyInfo({ }: Props) {
     setNowDonatingsState(nowDonatingsFromLocalStorage);
 
 
-  }, [nowDonatingsState]);
-  console.log(nowDonatingsState)
+  }, [accountId]);
 
 
   return (
