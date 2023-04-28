@@ -5,13 +5,8 @@ import Header from "./(AppComponents)/Header";
 import CampaignCard, {
   ICampaignCardProps,
 } from "./(AppComponents)/CampaignCard";
-import SearchBar from "./(AppComponents)/SearchBar";
 
 export default function Page() {
-  let SearchValue = ""
-  const handleSearch = (value: string) => {
-    SearchValue = value
-  };
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
 
   return (
@@ -20,7 +15,6 @@ export default function Page() {
         <h1 className="text-3xl text-white font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-purple-500 py-4">
           여러분의 따스한 마음을 기부하세요
         </h1>
-        <SearchBar />
         <div className="flex-col justify-center items-center space-y-4">
           {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
           {campaigns.map((campaign: ICampaignCardProps, index: number) => (
@@ -29,7 +23,6 @@ export default function Page() {
               key={campaign.id}
               beneficiary={beneficiaries}
               index={index}
-              searchValue={SearchValue}
             />
           ))}
         </div>
@@ -44,7 +37,7 @@ export const campaigns: ICampaignCardProps[] = [
     id: 1,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요1",
+    title: "캠페인 제목1",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
@@ -56,7 +49,7 @@ export const campaigns: ICampaignCardProps[] = [
     id: 2,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요2",
+    title: "캠페인 제목2",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
@@ -68,7 +61,7 @@ export const campaigns: ICampaignCardProps[] = [
     id: 3,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요",
+    title: "캠페인 제목3",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
@@ -80,7 +73,7 @@ export const campaigns: ICampaignCardProps[] = [
     id: 4,
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목을 작성해주세요",
+    title: "캠페인 제목4",
     description: "캠페인에 대한 설명을 작성해주세요",
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,

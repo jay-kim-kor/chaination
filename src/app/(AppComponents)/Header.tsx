@@ -4,6 +4,7 @@ import Image from "next/image";
 import logo from "../../../public/donate-logo.png";
 import Link from "next/link";
 import MetamaskInfo from "./MetamaskInfo";
+import SearchBar from "./SearchBar"
 
 export default function Header() {
   return (
@@ -32,9 +33,7 @@ export default function Header() {
               </div>
             </Link>
             <MetamaskInfo />
-            <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer">
-              검색
-            </div>
+            <SearchBar />
           </nav>
         </div>
       </header>

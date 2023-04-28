@@ -13,7 +13,7 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <form className="mb-4">
+    <form >
       <input
         type="text"
         value={searchValue}
