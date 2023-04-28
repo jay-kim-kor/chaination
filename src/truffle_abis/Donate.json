@@ -10146,12 +10146,12 @@
     "1337": {
       "events": {},
       "links": {},
-      "address": "0x9F447F0Cd8e428fbE2Ce619c64C3373769c33db2",
-      "transactionHash": "0x0c1da3d0bd98f6d6b293a13205462af9e0116a6e201ceea1c1b99b469b0bd8e2"
+      "address": "0x24845C8B2BDF3790fBaB7E4651FAa0EAa969ebA6",
+      "transactionHash": "0x45732dbc74447c520bff6c554fb758863b20ba8461fdb8efa2fab87c3e260013"
     }
   },
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-04-28T14:12:49.562Z",
+  "updatedAt": "2023-04-28T17:05:31.227Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
