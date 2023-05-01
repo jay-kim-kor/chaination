@@ -1,4 +1,11 @@
-export default function Page() {
+import React from "react";
+import "../../../styles/globals.css"
+
+export default function Page({ 
+  params, 
+}: {
+  params: { id: number };
+}) {
     return (
       <>
         <div className="h-80 w-full relative">
@@ -24,7 +31,7 @@ export default function Page() {
 
           {/* 오른쪽 영역 */}
           <div className="relative w-1/4 h-[2000px] border-l flex justify-center">
-          <div className="sticky top-20 w-72 h-[28rem] rounded-lg shadow-md p-4 border border-red-300 relative">
+          <div className="sticky top-24 w-72 h-[28rem] rounded-lg shadow-md p-4 border border-red-300 relative">
             <div className="relative inline-block w-12 h-12">
               <div className="absolute top-0 left-0 bg-red-300 rounded-md w-full h-full flex justify-center items-center">
                 <p className="text-white text-center text-sm">D-14</p>
@@ -44,4 +51,4 @@ export default function Page() {
         </div>
       </>
     );
-  }
+};
