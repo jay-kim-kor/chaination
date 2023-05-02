@@ -8,6 +8,7 @@ import CampaignCard, {
 
 export default function Page() {
   const beneficiaries: string[] = campaigns.map((campaign, index) => campaign.beneficiary);
+  const ids: number[] = campaigns.map((campaign, index) => campaign.id);
 
   return (
     <>
@@ -38,7 +39,7 @@ export const campaigns: ICampaignCardProps[] = [
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
     title: "캠페인 제목1",
-    description: "캠페인에 대한 설명을 작성해주세요",
+    description: "1",
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
     currentAmount: 300000,
@@ -50,7 +51,7 @@ export const campaigns: ICampaignCardProps[] = [
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
     title: "캠페인 제목2",
-    description: "캠페인에 대한 설명을 작성해주세요",
+    description: "2",
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
     currentAmount: 5000,
@@ -62,7 +63,7 @@ export const campaigns: ICampaignCardProps[] = [
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
     title: "캠페인 제목3",
-    description: "캠페인에 대한 설명을 작성해주세요",
+    description: "3",
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
     currentAmount: 0,
@@ -74,7 +75,7 @@ export const campaigns: ICampaignCardProps[] = [
     imageUrl:
       "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
     title: "캠페인 제목4",
-    description: "캠페인에 대한 설명을 작성해주세요",
+    description: "4",
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,
     currentAmount: 2000,

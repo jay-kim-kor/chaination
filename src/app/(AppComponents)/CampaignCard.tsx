@@ -7,7 +7,7 @@ import Donate from "../../truffle_abis/Donate.json";
 import Link from "next/link";
 
 export interface ICampaignCardProps {
-  id: number;
+  id: number[];
   imageUrl: string;
   title: string;
   description: string;
@@ -40,6 +40,7 @@ const CampaignBar = ({
 };
 
 export default function CampaignCard({
+  id,
   imageUrl,
   title,
   description,
@@ -97,7 +98,7 @@ export default function CampaignCard({
   return (
     <div className="flex-grow w-full md:w-full p-4">
         <div className="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden">
-        <Link href="/detailpage">
+          <Link href={`/${id}/detailpage`}>
           <img
             src={imageUrl}
             alt={title}
@@ -119,7 +120,9 @@ export default function CampaignCard({
               </div>
             </div>
           </div>
-        </Link>
+          </Link>
+          
+
           <Transfer
               beneficiary={beneficiary}
               contract={contracts[index]}
