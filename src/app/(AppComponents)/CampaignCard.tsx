@@ -7,7 +7,7 @@ import Donate from "../../truffle_abis/Donate.json";
 import Link from "next/link";
 
 export interface ICampaignCardProps {
-  id: number[];
+  id: number;
   imageUrl: string;
   title: string;
   description: string;
@@ -121,8 +121,6 @@ export default function CampaignCard({
             </div>
           </div>
           </Link>
-          
-
           <Transfer
               beneficiary={beneficiary}
               contract={contracts[index]}

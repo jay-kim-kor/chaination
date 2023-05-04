@@ -1,11 +1,7 @@
 import React from "react";
 import "../../../styles/globals.css"
 
-export default function Page({ 
-  params, 
-}: {
-  params: { id: number };
-}) {
+export default function Page () {
     return (
       <>
         <div className="h-80 w-full relative">
@@ -25,7 +21,7 @@ export default function Page({
           <div className="w-3/5 h-[2000px]">
             <div className="flex items-center justify-center w-full h-[64rem] rounded-b-lg shadow-md p-4 bg-red-300 relative">
               <img src="https://www.ghibli.jp/gallery/umi005.jpg" className="w-full h-64 object-cover object-center absolute top-0 left-0"/>
-              <p>캠페인 내용을 적을 수 있는 구역</p>
+              <p>캠페인 상세 내용 구역</p>
             </div>
           </div>
 
