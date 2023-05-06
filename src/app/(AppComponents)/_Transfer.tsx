@@ -33,8 +33,12 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
     }
     await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value:amountInWei}); 
     handlesDonate(amount)
+
     sessionStorage.setItem(`nowDonating-${donationId}-${accounts[0]}`, 'true');
+    //sesstionStorage를 사용해서 amount값을 저장
+    sessionStorage.setItem(`donatedAmount-${accounts[0]}-${donationId}`, JSON.stringify(amount));
     alert(`${amount}ETH만큼 기부했습니다!`)
+
     }
 
   async function transferDonate(): Promise<void>{

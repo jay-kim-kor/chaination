@@ -3,6 +3,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import Web3 from "web3";
+import Link from 'next/link';
+import MyDonation, {
+  Donation,
+}
+from '../(AppComponents)/MyDonation';
 import CampaignCard, {
   ICampaignCardProps,
 } from "../(AppComponents)/CampaignCard";
@@ -49,18 +54,22 @@ export default function MyInfo({ }: Props) {
   return (
     <>
 
-      <div className="flex items-center justify-center w-full h-25 border-b px-8 py-8">
+      <div className="flex items-center justify-center w-full h-25 border-b py-8">
+        <div className = "flex w-1/5">
         <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
           내정보
         </div>
+        </div>
+        <div className = "flex w-1/3">
         <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
           참여 기록
         </div>
-        <div className="mx-auto">
+        </div>
+        <div className="flex w-1/5">
 
         </div>
       </div>
-      <div className="flex w-full justify-center ">
+      <div className="flex w-full h-full justify-center ">
 
         {/*기본적인 내 정보*/}
         <div className="flex w-1/5 h-[1200px] mx-8">
@@ -80,7 +89,7 @@ export default function MyInfo({ }: Props) {
               <img src="/02.png" alt="METAMASK" className="object-cover w-auto" />
             </div>
 
-            <div className="flex flex items-center justify-center">
+            <div className="flex items-center justify-center">
               {/*메타마스크와 연동시켜 내 계정 가져오기*/}
               <div className=" ">
                 <input
@@ -97,7 +106,7 @@ export default function MyInfo({ }: Props) {
         </div>
 
         {/* 캠페인카드 불러오기 , 참여기록이 없을때 표시창 필요함*/}
-        <div className="flex w-4/5 h-[1200px] border-r bg-red-300">
+        <div className="flex w-1/3 h-[1200px] border-r bg-red-300">
           {campaigns.filter((campaign, index) => nowDonatingsState[index]).length === 0 ? (
             <div className="flex flex-col justify-center items-center w-full h-full">
               <h2 className="text-2xl  font-bold">
@@ -119,7 +128,9 @@ export default function MyInfo({ }: Props) {
               <div className="mx-auto px-4">
                 <div className="flex items-center justify-center">
                   {/* 캠페인카드 옆에 캠페인에 내가 기부한 금액 */}
-                  <div>캠페인카드 공간</div>
+                  <div>
+            
+                  </div>
                 </div>
               </div>
             </>
@@ -127,7 +138,7 @@ export default function MyInfo({ }: Props) {
         </div>
 
         {/* 빈공간 */}
-        <div className="flex w-1/3 ">
+        <div className="flex w-1/5 ">
 
         </div>
 
