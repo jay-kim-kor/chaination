@@ -23,8 +23,8 @@ export const campaigns: ICampaignCardProps[] = [
   {
     id: 1,
     imageUrl:
-      "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목1",
+      "https://img.freepik.com/premium-photo/cute-happy-poor-black-child-at-home_21730-14540.jpg",
+    title: "극한의 상황에도 웃음을 잃지않는 소년",
     description: "캠페인에 대한 상세 내용1",
     duration: "2023-04-17 - 2023-05-16",
     goal: 500000,
@@ -35,8 +35,8 @@ export const campaigns: ICampaignCardProps[] = [
   {
     id: 2,
     imageUrl:
-      "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목2",
+      "https://www.worldvision.or.kr/campaign/2015/images_giveup/gallery_01.jpg",
+    title: "배고픈 남부 아프리카 아이들을 위한 한 끼",
     description: "캠페인에 대한 상세 내용2",
     duration: "2023-04-17 - 2023-05-16",
     goal: 30000,
@@ -47,8 +47,8 @@ export const campaigns: ICampaignCardProps[] = [
   {
     id: 3,
     imageUrl:
-      "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목3",
+      "https://images.chosun.com/resizer/vcSV6NWdwbLKS5MKSlg2b_qBPsU=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/2CCPZJSW5HWK2I5J3QYTJCIDPE.jpg",
+    title: "추위에 고통스러워하는 고양이",
     description: "캠페인에 대한 상세 내용3",
     duration: "2023-04-17 - 2023-05-16",
     goal: 10000,
@@ -59,8 +59,8 @@ export const campaigns: ICampaignCardProps[] = [
   {
     id: 4,
     imageUrl:
-      "https://en.kriseinformation.dk/Media/638144674912320589/Sundhed_Humanitaer_bidrag_boks.svg?crop=715%2C228%2C584%2C585",
-    title: "캠페인 제목4",
+      "https://wplyuoicjiwl13857209.cdn.ntruss.com/data2/content/image/2020/06/17/.cache/512/20200617222402.jpg",
+    title: "지병으로 인해 숨을 쉬기 힘든 강아지",
     description: "캠페인에 대한 상세 내용4",
     duration: "2023-04-17 - 2023-05-16",
     goal: 1000000,

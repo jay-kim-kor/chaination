@@ -18,14 +18,18 @@ const CampaignList: React.FC<CampaignListProps> = ({ campaigns }) => {
     setSearchValue(value);
   };
 
-  useEffect(() => {
+  useEffect(() => { 
+    // 캠페인 타이틀을 기준으로 검색값에따라서 렌더링하게 함 
     const newCampaigns = campaigns.filter((campaign) =>
       campaign.title.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredCampaigns(newCampaigns);
   }, [campaigns, searchValue]);
 
-  useEffect(() => {
+  useEffect(() => { 
+    // 검색값에 따라서 수혜자 주소를 계속 렌더링함 
+    // 검색값을 기준으로 렌더링이 바뀌어도 수혜자 값을 배열 순서로 받아 오류 해결 
+
     const updatedBeneficiaries = filteredCampaigns.map(
       (campaign) => campaign.beneficiary
     );
