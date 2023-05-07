@@ -16,6 +16,7 @@ export interface ICampaignCardProps {
   currentAmount: number;
   beneficiary: string[];
   index: number;
+  donationAmount: number;
   onDonate: (donationIndex: number, amount: number) => void;
 }
 

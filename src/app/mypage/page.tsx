@@ -4,10 +4,7 @@
 import { useState, useEffect } from "react";
 import Web3 from "web3";
 import Link from 'next/link';
-import MyDonation, {
-  Donation,
-}
-from '../(AppComponents)/MyDonation';
+import MyDonation from '../(AppComponents)/MyDonation';
 import CampaignCard, {
   ICampaignCardProps,
 } from "../(AppComponents)/CampaignCard";
@@ -22,6 +19,17 @@ export default function MyInfo({ }: Props) {
   const nowDonatings: boolean[] = campaigns.map((campaign, index) => campaign.nowDonating);
   const [googleUser, setGoogleUser] = useState(null);
   const [accountId, setAccountId] = useState<string>("");
+
+  const [donationAmounts, setDonationAmounts] = useState<number[]>(new Array(campaigns.length).fill(0));
+
+  const handleDonation = (donationIndex: number, amount: number) => {
+    setDonationAmounts((prevDonationAmounts) => {
+      const updatedDonationAmounts = [...prevDonationAmounts];
+      updatedDonationAmounts[donationIndex] += amount;
+      return updatedDonationAmounts;
+    });
+  };
+
 
   useEffect(() => {
     setNowDonatingsState(nowDonatings);
@@ -55,15 +63,15 @@ export default function MyInfo({ }: Props) {
     <>
 
       <div className="flex items-center justify-center w-full h-25 border-b py-8">
-        <div className = "flex w-1/5">
-        <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
-          내정보
+        <div className="flex w-1/5">
+          <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
+            내정보
+          </div>
         </div>
-        </div>
-        <div className = "flex w-1/3">
-        <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
-          참여 기록
-        </div>
+        <div className="flex w-1/3">
+          <div className="bg-red-300 rounded-full text-2xl font-bold mx-auto px-4 py-2">
+            참여 기록
+          </div>
         </div>
         <div className="flex w-1/5">
 
@@ -106,7 +114,7 @@ export default function MyInfo({ }: Props) {
         </div>
 
         {/* 캠페인카드 불러오기 , 참여기록이 없을때 표시창 필요함*/}
-        <div className="flex w-1/3 h-[1200px] border-r bg-red-300">
+        <div className="flex w-1/3 h-full border-r bg-red-300">
           {campaigns.filter((campaign, index) => nowDonatingsState[index]).length === 0 ? (
             <div className="flex flex-col justify-center items-center w-full h-full">
               <h2 className="text-2xl  font-bold">
@@ -114,7 +122,7 @@ export default function MyInfo({ }: Props) {
             </div>
           ) : (
             <>
-              <div className="flex-col items-center  p-4 pt-24 space-y-4">
+              <div className="flex-col w-1/2 items-center  p-4 pt-24 space-y-4">
                 {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
                 {campaigns.filter((campaign, index) => nowDonatingsState[index]).map((campaign: ICampaignCardProps, index: number) => (
                   <CampaignCard
@@ -122,14 +130,15 @@ export default function MyInfo({ }: Props) {
                     key={campaign.id}
                     beneficiary={beneficiaries}
                     index={index}
+                    donationAmount={donationAmounts[index]}
                   />
                 ))}
               </div>
-              <div className="mx-auto px-4">
-                <div className="flex items-center justify-center">
+              <div className="flex-col w-1/2 items-center  p-4 pt-24 space-y-4">
+                <div className="flex w- 1/2 items-center justify-center">
                   {/* 캠페인카드 옆에 캠페인에 내가 기부한 금액 */}
-                  <div>
-            
+                  <div className="mx-auto px-4">
+                    <MyDonation />
                   </div>
                 </div>
               </div>

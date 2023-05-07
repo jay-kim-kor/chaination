@@ -1,9 +1,10 @@
+// MyDonation.tsx
 import React, { useEffect, useState } from 'react';
 
 interface Donation {
   account: string;
   campaignId: string;
-  amount: number;
+  amounts: number[];
 }
 
 const MyDonation: React.FC = () => {
@@ -11,12 +12,12 @@ const MyDonation: React.FC = () => {
 
   useEffect(() => {
     const fetchDonations = () => {
-      const donatedCampaigns = Object.keys(localStorage)
+      const donatedCampaigns = Object.keys(sessionStorage)
         .filter((key) => key.startsWith('donatedAmount'))
         .map((key) => {
           const [_, account, campaignId] = key.split('-');
-          const amount = JSON.parse(localStorage.getItem(key) || '0');
-          return { account, campaignId, amount };
+          const amounts = JSON.parse(sessionStorage.getItem(key) || '[]');
+          return { account, campaignId, amounts };
         });
 
       setDonations(donatedCampaigns);
@@ -27,14 +28,20 @@ const MyDonation: React.FC = () => {
 
   return (
     <div>
-      <h2>My Donations</h2>
-      <ul>
+      <h2>내 기부 기록</h2>
+      <div className="flex flex-col border-b">
         {donations.map((donation, index) => (
           <li key={index}>
-            Campaign ID: {donation.campaignId}, Amount: {donation.amount} ETH
+            Campaign ID: {donation.campaignId}
+            <ul>
+              {donation.amounts.map((amount, i) => (
+                <li key={i}>참여 금액: {amount} ETH</li>
+              ))}
+            </ul>
+            총합: {donation.amounts.reduce((a, b) => a + b, 0)} ETH
           </li>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
