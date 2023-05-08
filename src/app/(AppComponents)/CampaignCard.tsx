@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Web3 from "web3";
-import Transfer from "./_Transfer";
-import Donate from "../../truffle_abis/Donate.json";
 import Link from "next/link";
 
 export interface ICampaignCardProps {
@@ -14,10 +11,9 @@ export interface ICampaignCardProps {
   duration: string;
   goal: number;
   currentAmount: number;
-  beneficiary: string[];
 }
 
-const CampaignBar = ({
+const CampaignBar = ({ // 각 캠페인 그래프 표시 컴포넌트 
   goal,
   currentAmount,
 }: {
@@ -47,52 +43,25 @@ export default function CampaignCard({
   goal,
   currentAmount,
   duration,
-  beneficiary,
-  index,
 }: ICampaignCardProps) {
-  const [web3, setWeb3] = useState<Web3 | undefined>();
-  const [accounts, setAccounts] = useState<string>();
-  const [contracts, setContracts] = useState<any[]>([]); // 모든 contract 인스턴스를 저장하는 배열
-  const [amount, setAmount] = useState<number>(0);
-  const [current, setCurrent] = useState(currentAmount);
+  const [current, setCurrent] = useState(currentAmount); 
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    const init = async () => {
-      const web3 = new Web3(window.ethereum);
-      if(!web3){ // 현재 접속한 브라우저에 메타마스크가 없으면 아래부분들을 실행하지 않겠다는 부문 
-        return;
-      }
-      setWeb3(web3);
-      const networkId = await web3.eth.net.getId();
-      const accounts = await web3.eth.getAccounts();
-      console.log(accounts)
-      const contractAddress = Donate.networks[`${networkId}`].address;
-      const contractAbi: any = Donate.abi;
-      const instances = beneficiary.map(
-        (beneficiaries) => new web3.eth.Contract(contractAbi, contractAddress)
-      );
-      setContracts(instances);
-      setAccounts(accounts)
-    };
+    const init = async () => {};
     init();
     const handleSearchValueChange = (event: CustomEvent) => {
       setSearchValue(event.detail);
     };
 
-    window.addEventListener("searchValueChange", handleSearchValueChange);
+    window.addEventListener("searchValueChange", handleSearchValueChange); // 검색값 함수
 
     return () => {
-      window.removeEventListener("searchValueChange", handleSearchValueChange);
+      window.removeEventListener("searchValueChange", handleSearchValueChange); // 검색에 값 없으면 다시 초기로
     };
-  }, [beneficiary]);
+  }, []); // 
 
-  const handlesDonate = (amount: number) => {
-    const updatedCurrent = current + amount;
-    setCurrent(updatedCurrent); // Donate 10 units
-  };
-
-  const titleHighlighted =
+  const titleHighlighted = // 검색칸에 입력시 첫글자 입력값부터를 기준으로 searchValue에 저장 
   searchValue !== "" && title.toLowerCase().includes(searchValue.toLowerCase());
 
   return (
@@ -120,17 +89,7 @@ export default function CampaignCard({
               </div>
             </div>
           </div>
-          </Link>
-          <Transfer
-              beneficiary={beneficiary}
-              contract={contracts[index]}
-              web3={web3}
-              donationId={index}
-              amounts={amount}
-              accounts={accounts}
-              current={current}
-              handlesDonate={handlesDonate}
-            />
+          </Link> 
         </div>
     </div>
   );

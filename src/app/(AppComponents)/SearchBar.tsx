@@ -20,7 +20,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         <input
           className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
           type="text"
-          placeholder="Search..."
+          placeholder="찾고싶은 캠페인을 검색하세요"
           value={searchValue}
           onChange={handleSearch}
         />

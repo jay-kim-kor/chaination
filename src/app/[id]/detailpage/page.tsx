@@ -1,11 +1,12 @@
 import React from "react";
 import "../../../styles/globals.css"
+import DetailInfo from "./detailInfo";
 
 export default function Page () {
     return (
       <>
         <div className="h-80 w-full relative">
-            <img src="https://www.ghibli.jp/gallery/umi015.jpg" className="object-cover h-full w-full"/>
+            <img src="https://www.worldvision.or.kr/campaign/2015/images_giveup/gallery_01.jpg" className="object-cover h-full w-full"/>
             <div className="absolute bottom-0 left-1/3 p-4 text-white">
                 <p className="underline decoration-sky-500 font-sans text-3xl">캠페인 제목이 여기에 나타나게 할 것입니다</p>
             </div>
@@ -20,7 +21,7 @@ export default function Page () {
           {/* 왼쪽 영역 */}
           <div className="w-3/5 h-[2000px]">
             <div className="flex items-center justify-center w-full h-[64rem] rounded-b-lg shadow-md p-4 bg-red-300 relative">
-              <img src="https://www.ghibli.jp/gallery/umi005.jpg" className="w-full h-64 object-cover object-center absolute top-0 left-0"/>
+              <img src="https://www.worldvision.or.kr/campaign/2015/images_giveup/gallery_01.jpg" className="w-full h-64 object-cover object-center absolute top-0 left-0"/>
               <p>캠페인 상세 내용 구역</p>
             </div>
           </div>
@@ -35,12 +36,8 @@ export default function Page () {
             </div>
 
               <p>기부하기 기능이 들어간 카드에 담겨지는 내용 작성란</p>
-              <p className="my-4">캠페인에 후원되어 있는 현재 금액: 1000원</p>
-            <div className="w-full bg-gray-200 h-2 rounded-lg relative">
-              <div className="bg-red-300 absolute top-0 left-0 h-full rounded-lg" style={{width: "40%"}}></div>
-              </div>
-                <p className="my-4">목표 금액: 5000원</p>
-                <button className="absolute bottom-0 left-0 w-full bg-red-300 hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg">기부하기</button>
+                {/* <button className="absolute bottom-0 left-0 w-full bg-red-300 hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg">기부하기</button> */}
+                <DetailInfo />
             </div>
             </div>
         </div>

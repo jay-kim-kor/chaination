@@ -9,6 +9,7 @@ type TransferProps = {
   handlesDonate: Function;
   nowDonating: boolean;
   accounts: string;
+  web3: any;
 };
 
 type DonateContract = {
@@ -18,10 +19,9 @@ type DonateContract = {
   }
 }
 
-const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, handlesDonate, accounts}) => {
+const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, accounts, handlesDonate}) => {
   const [amount, setAmount] = useState<number>(0);
-  console.log(accounts)
-  console.log(beneficiary[donationId])
+  console.log(contract)
 
 
   async function handleDonate(): Promise<void> {
@@ -57,8 +57,8 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
   if (accounts == beneficiary[donationId]) {
     return (
       <div>
-        <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          onClick={transferDonate}>Transfer</button>
+        <button className="absolute bottom-0 left-0 w-full bg-red-300 hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg"
+          onClick={transferDonate}>전송하기</button>
         <br />
         <br />
         <div className="text-gray-500 text-sm">
@@ -67,16 +67,16 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
     );
   } else {
     return (
-      <div>
-         <label className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          Amount:
-          <input className="mt-4 px-4 py-1.5 bg-indigo-500 text-white rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-indigo-470"
+      <div className="pl-4 pr-4">
+         <label className="absolute left-0 w-full bg-red-300 rounded-md hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg">
+          기부금액:
+          <input className="Justify-center Item-center W-full px-4 py-1.5 bg-red-500 text-black rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-indigo-470"
             type="number" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
         </label>
         <br />
         <br />
-        <button className="mt-4 px-4 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" 
-          onClick={handleDonate}>Donate</button>
+        <button className="absolute bottom-0 left-0 w-full bg-red-300 hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg"
+          onClick={handleDonate}>기부하기</button>
         <br />
         <br />
         <div className="text-gray-500 text-sm">
