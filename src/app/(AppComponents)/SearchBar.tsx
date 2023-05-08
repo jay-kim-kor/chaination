@@ -1,29 +1,32 @@
-"use client";
-
+"use client"
 import React, { useState } from "react";
 
-const SearchBar: React.FC = () => {
+interface SearchBarProps {
+  onSearch: (value: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearchValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(event.target.value);
-    // Emit a custom event with the search value.
-    const searchEvent = new CustomEvent("searchValueChange", { detail: event.target.value });
-    window.dispatchEvent(searchEvent);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    onSearch(value);
   };
 
   return (
-    <form >
-      <input
-        type="text"
-        value={searchValue}
-        onChange={handleSearchValueChange}
-        className="border border-gray-300 p-2 rounded"
-        placeholder="캠페인 검색"
-      />
-    </form>
+    <div className="w-full max-w-md mx-auto">
+      <div className="flex items-center border-b border-b-2 border-teal-500 py-2">
+        <input
+          className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="text"
+          placeholder="찾고싶은 캠페인을 검색하세요"
+          value={searchValue}
+          onChange={handleSearch}
+        />
+      </div>
+    </div>
   );
 };
 
 export default SearchBar;
-
