@@ -11,6 +11,12 @@ export interface ICampaignCardProps {
   duration: string;
   goal: number;
   currentAmount: number;
+
+  beneficiary: string[];
+  index: number;
+  donationAmount: number;
+  onDonate: (donationIndex: number, amount: number) => void;
+
 }
 
 const CampaignBar = ({ // 각 캠페인 그래프 표시 컴포넌트 

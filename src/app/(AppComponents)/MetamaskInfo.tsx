@@ -20,7 +20,7 @@ const MetamaskInfo: React.FC = () => {
         try{
             const accounts = await window.ethereum.enable();
             setLoggedIn(true);
-            setAccount(accounts[0])
+            setAccount(accounts[1])
             
         } catch (err) {
             alert("메타마스크 연결 권한이 필요합니다.")
