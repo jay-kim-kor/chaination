@@ -26,6 +26,11 @@ export default function Header() {
           </Link>
 
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <Link href="/block">
+              <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer">
+                Block
+              </div>
+            </Link>
           <Link href="/history">
               <div className="mr-5 text-gray-1000 hover:text-red-300 cursor-pointer">
                 History
