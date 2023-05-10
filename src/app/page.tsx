@@ -5,7 +5,6 @@ import Header from "./(AppComponents)/Header";
 import CampaignList from "./(AppComponents)/CampaignList";
 
 export default function Page() {
-
   return (
     <>
       <div className="container mx-auto px-4">
