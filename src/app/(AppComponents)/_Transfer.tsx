@@ -20,9 +20,9 @@ type DonateContract = {
 }
 
 
-const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donationId, accounts, handlesDonate}) => {
+const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donationId, accounts, handlesDonate, campaign, goal, current_amount, beneficiary, params}) => {
   const [amount, setAmount] = useState<number>(0);
-  console.log(contract)
+  console.log(beneficiarys)
 
 
   async function handleDonate(): Promise<void> {
@@ -32,7 +32,7 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
       alert("메타마스크 로그인이 필요합니다.")
       return;
     }
-    await contract.methods.donate(beneficiary[donationId], donationId).send({ from: accounts[0], value: amountInWei });
+    await contract.methods.donate(beneficiarys[donationId], donationId).send({ from: accounts[0], value: amountInWei });
     handlesDonate(amount)
 
     const storageKey = `donatedAmount-${accounts[0]}-${donationId}`;
@@ -53,8 +53,8 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
       alert("메타마스크 로그인이 필요합니다.")
       return;
     }
-    const beneficiaries = [beneficiary[donationId]];
-    if (from == beneficiary[donationId]) {
+    const beneficiaries = [beneficiarys[donationId]];
+    if (from == beneficiarys[donationId]) {
       await contract.methods.unstake(beneficiaries, donationId).send({ from });
     } else {
       alert("캠페인에 등록된 주소가 아니면 금액 전송이 불가능합니다!")
@@ -63,7 +63,7 @@ const Transfer: React.FC<TransferProps> = ({ beneficiary, contract, web3, donati
   }
 
 
-  if (accounts == beneficiary[donationId]) {
+  if (accounts == beneficiarys[donationId]) {
     return (
       <div>
         <button className="absolute bottom-0 left-0 w-full bg-red-300 hover:bg-red-400 transition duration-500 ease-in-out text-white py-4 rounded-b-lg"

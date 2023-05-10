@@ -7,6 +7,7 @@ import Donate from "../../../truffle_abis/Donate.json";
 
 const DetailBars =({ // 현재 진행 그래프 표시 
     currentAmount
+
     }: {
         currentAmount:number; 
     }) => {
@@ -26,7 +27,8 @@ const DetailBars =({ // 현재 진행 그래프 표시
     );
   };
 
-const detailInfo = ()=> {
+const detailInfo = (campaign, goal, current_amount, beneficiary, params)=> {
+  console.log(params)
 
   const currentAmount = 1000; // 캠페인 그래프의 현재값 임의 설정 
   const [beneficiaries, setBeneficiaries] = useState<string[]>([]);
@@ -49,7 +51,7 @@ const detailInfo = ()=> {
       const instances = new web3.eth.Contract(contractAbi, contractAddress)
       setContracts(instances);
       setAccounts(accounts)
-      setBeneficiaries(['0x5ada2C5ccf1860BdaaEca022C01F4d86542D3F12']) // 수혜자 주소 임의 설정
+      setBeneficiaries([campaign.beneficiary]) // 수혜자 주소 임의 설정
     };
     init();
 
@@ -65,20 +67,23 @@ const detailInfo = ()=> {
   return (
     <div>
         <div className="my-4">
-        캠페인에 후원되어있는 현재 금액: {current}원
+        캠페인에 후원되어있는 현재 금액: {campaign.current_amount}원
         </div>
-        <p className="my-4">목표 금액: 5000원</p>
+        <p className="my-4">목표 금액: {campaign.goal}원</p>
     <div>
     <DetailBars currentAmount={current} />
     </div>
     <br></br>
     <Transfer
-    beneficiary={beneficiaries}
+    beneficiarys={beneficiaries}
     contract={contracts}
     web3={web3}
     accounts={accounts}
     donationId={0}
     handlesDonate={handlesDonate}
+    current_amount={current_amount}
+    beneficiary={campaign.beneficiary}
+    params={params}
     />
     </div>
   );

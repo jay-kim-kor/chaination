@@ -4,20 +4,7 @@ import "../styles/globals.css";
 import Header from "./(AppComponents)/Header";
 import CampaignList from "./(AppComponents)/CampaignList";
 
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = "https://fdygjithtwapwzewfxuc.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey || "");
-
 export default function Page() {
-  const getCampaignsId = async () => {
-    let { data: campaign, error } = await supabase.from("campaign").select("*");
-    console.log(campaign);
-    console.log(error);
-  };
-
-  getCampaignsId();
 
   return (
     <>
