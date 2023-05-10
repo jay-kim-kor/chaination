@@ -3,8 +3,7 @@
 import DetailInfo from "./detailInfo";
 import React, {useState} from 'react'
 
-export default async function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, params){
-    console.log(params)
+export default async function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, id){
     
     const [activeTab, setActiveTab] = useState("campaign-content"); // 초기값 설정
 
@@ -94,7 +93,7 @@ export default async function detailCss(campaign, title, image_url, description,
                             goal={campaign.goal}
                             current_amount={campaign.current_amount}
                             beneficiary={campaign.beneficiary}
-                            params={params}/>
+                            id={campaign.id}/>
                 </div>  
                 </div>
             </div>

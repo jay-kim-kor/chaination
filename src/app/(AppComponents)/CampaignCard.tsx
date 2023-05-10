@@ -22,11 +22,14 @@ export interface ICampaignCardProps {
 const CampaignBar = ({ // 각 캠페인 그래프 표시 컴포넌트 
   goal,
   currentAmount,
+  id
 }: {
   goal: number;
-  currentAmount: number;
+  currentAmount: number,
+  id: number,
 }) => {
-  const percentage = (currentAmount / goal) * 100;
+  const currentAmounts = parseInt(sessionStorage.getItem(`${id}-current`)) || currentAmount;
+  const percentage = (currentAmounts / goal) * 100;
   const intPercentage = Math.floor(percentage);
 
   return (
@@ -50,11 +53,16 @@ export default function CampaignCard({
   currentAmount,
   duration,
 }: ICampaignCardProps) {
-  const [current, setCurrent] = useState(currentAmount); 
+  const currentAmounts = parseInt(sessionStorage.getItem('current'))
+  const [current, setCurrent] = useState(); 
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    const init = async () => {};
+    const init = async () => {
+      const initialCurrent = currentAmount || currentAmounts;
+      setCurrent(initialCurrent);
+    
+    };
     init();
     const handleSearchValueChange = (event: CustomEvent) => {
       setSearchValue(event.detail);
@@ -85,7 +93,7 @@ export default function CampaignCard({
             }`}>{title}</h2>
             <p className="text-gray-500 text-sm">{duration}</p>
             <p className="text-sm text-gray-500 mb-4">{description}</p>
-            <CampaignBar goal={goal} currentAmount={current} />
+            <CampaignBar goal={goal} currentAmount={currentAmount} id={id}/>
             <div className="flex justify-between mt-4">
               <div className="text-gray-500 text-sm">
                 목표 모금액: {goal}ETH

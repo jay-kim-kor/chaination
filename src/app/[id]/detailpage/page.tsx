@@ -14,6 +14,8 @@ export default async function Page({
 }) {
   let { data: campaign, error } = await supabase.from("campaign").select("*").eq('id', params.id);
   // const data = await supabase.from("campaign").select("*").eq('id', params.id);
+  console.log(campaign[0].id)
+  console.log(campaign[0].title)
     return (
       <>
         <Suspense fallback={<>Loading...</>}>
@@ -26,6 +28,7 @@ export default async function Page({
         current_amount={campaign[0].current_amount}
         goal={campaign[0].goal}
         beneficiary={campaign[0].beneficiary}
+        id={campaign[0].id}
 
         />
         </Suspense>

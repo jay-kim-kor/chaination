@@ -6,13 +6,16 @@ import Web3 from "web3";
 import Donate from "../../../truffle_abis/Donate.json";
 
 const DetailBars =({ // 현재 진행 그래프 표시 
-    currentAmount
-
+    currentAmount,
+    goal,
+    id
     }: {
         currentAmount:number; 
+        id:number
+        goal:number
     }) => {
-    const goal = 5000 // 목표값 임의 설정 
-    const percentage = (currentAmount / goal) * 100;
+    const currentAmounts = currentAmount + parseInt(sessionStorage.getItem(`${id}-current`))
+    const percentage = (currentAmounts / goal) * 100;
     const intPercentage = Math.floor(percentage);
   
     return (
@@ -27,18 +30,25 @@ const DetailBars =({ // 현재 진행 그래프 표시
     );
   };
 
-const detailInfo = (campaign, goal, current_amount, beneficiary, params)=> {
-  console.log(params)
-
-  const currentAmount = 1000; // 캠페인 그래프의 현재값 임의 설정 
+const detailInfo = (campaign, goal, current_amount, beneficiary,id)=> {
+  const [cardCurrents, setCardCurrents] = useState();
   const [beneficiaries, setBeneficiaries] = useState<string[]>([]);
   const [web3, setWeb3] = useState<Web3 | undefined>();
   const [contracts, setContracts] = useState<any>();
   const [accounts, setAccounts] = useState<string>();
-  const [current, setCurrent] = useState(currentAmount);
+  const [current, setCurrent] = useState(current_amount);
+
+  if (!sessionStorage.getItem('hasCampaignData')) {
+    sessionStorage.setItem('goal', campaign.goal);
+    sessionStorage.setItem(`${id}-current`, campaign.current_amount);
+    sessionStorage.setItem('hasCampaignData', 'true');
+  }
+  
 
   useEffect(() => {
     const init = async () => {
+      const cardCurrent = parseInt(sessionStorage.getItem(`${id}-current`))
+      setCardCurrents(cardCurrent)
       const web3 = new Web3(window.ethereum);
       if(!web3){ // 현재 접속한 브라우저에 메타마스크가 없으면 아래부분들을 실행하지 않겠다는 부문 
         return;
@@ -56,7 +66,7 @@ const detailInfo = (campaign, goal, current_amount, beneficiary, params)=> {
     init();
 
 //   }, [accounts]); <-- 접속 주소가 바뀔 때 마다 체크하여 곧바로 Donate, Transfer버튼이 바뀜
-    }, []);
+    }, [cardCurrents]);
 
   const handlesDonate = (amount: number) => { // 캠페인 그래프의 값을 더하는 함수 
     const updatedCurrent = current + amount;
@@ -67,11 +77,11 @@ const detailInfo = (campaign, goal, current_amount, beneficiary, params)=> {
   return (
     <div>
         <div className="my-4">
-        캠페인에 후원되어있는 현재 금액: {campaign.current_amount}원
+        캠페인에 후원되어있는 현재 금액: {cardCurrents}원
         </div>
         <p className="my-4">목표 금액: {campaign.goal}원</p>
     <div>
-    <DetailBars currentAmount={current} />
+    <DetailBars currentAmount={campaign.current_amount} id={id} goal={campaign.goal}/>
     </div>
     <br></br>
     <Transfer
@@ -83,7 +93,7 @@ const detailInfo = (campaign, goal, current_amount, beneficiary, params)=> {
     handlesDonate={handlesDonate}
     current_amount={current_amount}
     beneficiary={campaign.beneficiary}
-    params={params}
+    id={campaign.id}
     />
     </div>
   );
