@@ -2,6 +2,8 @@
 
 import DetailInfo from "./detailInfo";
 import React, {useState, useEffect} from 'react'
+import Image from "next/image";
+import donationimage from "../../../../public/detail1.png";
 
 export default function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, id){
     
@@ -32,7 +34,7 @@ export default function detailCss(campaign, title, image_url, description, durat
             <div className="flex items-center justify-evenly w-5/6 h-full pt-8">
               {activeTab === "campaign-content" && (
               <div className="w-3/5 h-[2000px]">
-                <div className="flex items-center justify-center w-full h-[64rem] rounded-b-lg shadow-md p-4 bg-red-300 relative">
+                <div className="flex items-center justify-center w-full h-[64rem] rounded-b-lg shadow-md p-4 bg-red-200 relative">
                   <img src={`${campaign.image_url}`} className="w-full h-64 object-cover object-center absolute top-0 left-0"/>
                   <p className="underline">{campaign.description}</p>
                 </div>
@@ -41,8 +43,12 @@ export default function detailCss(campaign, title, image_url, description, durat
   
               {activeTab === "donation-content" && (
               <div className="w-3/5 h-[2000px]">
-                <div className="flex items-center justify-center w-full h-[32rem] rounded-b-lg shadow-md p-4 bg-red-200 relative">
-                  <p>여러분이 기부하신 마음이 그들에겐 힘이 됩니다</p>
+                <div className="flex items-center justify-center w-full h-[32rem] p-4">
+                  <Image
+                    alt="donationimg"
+                    src={donationimage}
+                    className="object-cover w-full h-full"
+                  />
                 </div>
   
                 <div className="mt-10 border-t"></div>

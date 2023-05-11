@@ -84,13 +84,13 @@ export default function CampaignCard({
   searchValue !== "" && title.toLowerCase().includes(searchValue.toLowerCase());
 
   return (
-    <div className="flex-grow w-full md:w-full p-4">
-        <div className="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden">
+    <div className="w-1/2 h-full p-4">
+        <div className="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden w-full">
           <Link href={`/${id}/detailpage`}>
           <img
-            src={imageUrl}
+            src="https://www.leaf.ca/wp-content/uploads/elementor/thumbs/iStock-1163228217-scaled-oxcp7dlxlvswkph8bb90c293mgxqktrf4yozycc460.jpg"
             alt={title}
-            className="w-full h-85 object-cover"
+            className="w-full h-full object-cover"
           />
           <div className="p-4">
             <h2 className={`text-lg font-medium mb-2 ${
