@@ -56,7 +56,6 @@ export default function MyInfo({ }: Props) {
     });
     setNowDonatingsState(nowDonatingsFromLocalStorage);
 
-
   }, [accountId]);
 
   return (

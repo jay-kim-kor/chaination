@@ -3,11 +3,11 @@
 import DetailInfo from "./detailInfo";
 import React, {useState} from 'react'
 
-export default async function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, id){
+export default function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, id){
     
-    const [activeTab, setActiveTab] = useState("campaign-content"); // 초기값 설정
+    const [activeTab, setActiveTab] = useState<string>("campaign-content"); // 초기값 설정
 
-    const handleTabClick = (tabName) => {
+    const handleTabClick = (tabName: string) => {
         setActiveTab(tabName); // 상태 업데이트
     }
     return (
@@ -28,7 +28,7 @@ export default async function detailCss(campaign, title, image_url, description,
               <div className="w-3/5 h-[2000px]">
                 <div className="flex items-center justify-center w-full h-[64rem] rounded-b-lg shadow-md p-4 bg-red-300 relative">
                   <img src={`${campaign.image_url}`} className="w-full h-64 object-cover object-center absolute top-0 left-0"/>
-                  <p>{campaign.description}</p>
+                  <p className="underline">{campaign.description}</p>
                 </div>
               </div>
               )}

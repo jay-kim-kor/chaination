@@ -32,6 +32,7 @@ const CampaignBar = ({ // 각 캠페인 그래프 표시 컴포넌트
   const percentage = (currentAmounts / goal) * 100;
   const intPercentage = Math.floor(percentage);
 
+
   return (
     <div className="bg-gray-200 rounded-full w-full">
       <div
@@ -53,13 +54,17 @@ export default function CampaignCard({
   currentAmount,
   duration,
 }: ICampaignCardProps) {
-  const currentAmounts = parseInt(sessionStorage.getItem('current'))
+  const currentAmounts = parseInt(sessionStorage.getItem(`${id}-current`))
   const [current, setCurrent] = useState(); 
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const init = async () => {
-      const initialCurrent = currentAmount || currentAmounts;
+      if (!sessionStorage.getItem(`${id}-hasCampaignData`)) {
+        sessionStorage.setItem(`${id}-current`, currentAmount);
+        sessionStorage.setItem(`${id}-hasCampaignData`, 'true');
+      }
+      const initialCurrent = sessionStorage.getItem(`${id}-current`)
       setCurrent(initialCurrent);
     
     };

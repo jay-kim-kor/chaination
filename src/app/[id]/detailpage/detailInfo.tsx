@@ -6,15 +6,18 @@ import Web3 from "web3";
 import Donate from "../../../truffle_abis/Donate.json";
 
 const DetailBars =({ // 현재 진행 그래프 표시 
-    currentAmount,
     goal,
     id
     }: {
-        currentAmount:number; 
         id:number
         goal:number
     }) => {
-    const currentAmounts = currentAmount + parseInt(sessionStorage.getItem(`${id}-current`))
+      const [currentAmounts, setcurrentAmounts] = useState();
+      useEffect(()=>{
+        const currentAmount = parseInt(sessionStorage.getItem(`${id}-current`))
+        setcurrentAmounts(currentAmount)
+      })
+    
     const percentage = (currentAmounts / goal) * 100;
     const intPercentage = Math.floor(percentage);
   
@@ -38,16 +41,9 @@ const detailInfo = (campaign, goal, current_amount, beneficiary,id)=> {
   const [accounts, setAccounts] = useState<string>();
   const [current, setCurrent] = useState(current_amount);
 
-  if (!sessionStorage.getItem('hasCampaignData')) {
-    sessionStorage.setItem('goal', campaign.goal);
-    sessionStorage.setItem(`${id}-current`, campaign.current_amount);
-    sessionStorage.setItem('hasCampaignData', 'true');
-  }
-  
-
   useEffect(() => {
     const init = async () => {
-      const cardCurrent = parseInt(sessionStorage.getItem(`${id}-current`))
+      const cardCurrent = typeof window !== 'undefined' && parseInt(sessionStorage.getItem(`${campaign.id}-current`)) 
       setCardCurrents(cardCurrent)
       const web3 = new Web3(window.ethereum);
       if(!web3){ // 현재 접속한 브라우저에 메타마스크가 없으면 아래부분들을 실행하지 않겠다는 부문 
@@ -81,7 +77,7 @@ const detailInfo = (campaign, goal, current_amount, beneficiary,id)=> {
         </div>
         <p className="my-4">목표 금액: {campaign.goal}원</p>
     <div>
-    <DetailBars currentAmount={campaign.current_amount} id={id} goal={campaign.goal}/>
+    <DetailBars id={campaign.id} goal={campaign.goal}/>
     </div>
     <br></br>
     <Transfer

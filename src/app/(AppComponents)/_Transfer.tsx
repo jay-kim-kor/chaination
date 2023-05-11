@@ -22,7 +22,6 @@ type DonateContract = {
 
 const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donationId, accounts, handlesDonate, campaign, goal, current_amount, beneficiary, params, id}) => {
   const [amount, setAmount] = useState<number>(0);
-  console.log(beneficiarys)
 
   async function handleDonate(): Promise<void> {
     const accounts = await web3.eth.getAccounts();
@@ -31,7 +30,7 @@ const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donat
       alert("메타마스크 로그인이 필요합니다.")
       return;
     }
-    await contract.methods.donate(beneficiarys[donationId], donationId).send({ from: accounts[0], value: amountInWei });
+    await contract.methods.donate(beneficiarys[donationId], id).send({ from: accounts[0], value: amountInWei });
     handlesDonate(amount)
 
     const storageKey = `donatedAmount-${accounts[0]}-${donationId}`;
@@ -40,11 +39,11 @@ const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donat
     currentAmountArray.push(amount);
     sessionStorage.setItem(storageKey, JSON.stringify(currentAmountArray));
 
-    const currentAmount = Number(sessionStorage.getItem('current'));
+    const currentAmount = Number(sessionStorage.getItem(`${id}-current`));
     const newAmount = currentAmount + amount;
     sessionStorage.setItem(`${id}-current`, newAmount.toString());
 
-    sessionStorage.setItem(`nowDonating-${id}-${accounts[0]}`, 'true');
+    sessionStorage.setItem(`nowDonating-${id-1}-${accounts[0]}`, 'true');
     alert(`${amount}ETH만큼 기부했습니다!`)
 
   }
@@ -58,7 +57,7 @@ const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donat
     }
     const beneficiaries = [beneficiarys[donationId]];
     if (from == beneficiarys[donationId]) {
-      await contract.methods.unstake(beneficiaries, donationId).send({ from });
+      await contract.methods.unstake(beneficiaries, id).send({ from });
     } else {
       alert("캠페인에 등록된 주소가 아니면 금액 전송이 불가능합니다!")
       return;
