@@ -1,12 +1,18 @@
 'use client'
 
 import DetailInfo from "./detailInfo";
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 export default function detailCss(campaign, title, image_url, description, duration, goal, current_amount, beneficiary, id){
     
     const [activeTab, setActiveTab] = useState<string>("campaign-content"); // 초기값 설정
+    const [currentAmounts, setcurrentAmounts] = useState();
+    
 
+    useEffect(()=>{
+      const currentState = sessionStorage.getItem(`${campaign.id}-current`)
+      setcurrentAmounts(currentState)
+    })
     const handleTabClick = (tabName: string) => {
         setActiveTab(tabName); // 상태 업데이트
     }
@@ -47,7 +53,7 @@ export default function detailCss(campaign, title, image_url, description, durat
                   <div className="absolute top-0 left-0 h-full bg-red-400 rounded-full" style={{width: "40%"}}></div>
                 </div>
                 <div className="flex justify-between w-full mt-4 border-t pt-4">
-                  <p className="text-gray-600 font-bold border-r pr-4">모금 금액: {campaign.current_amount}</p>
+                  <p className="text-gray-600 font-bold border-r pr-4">모금 금액: {currentAmounts}</p>
                   <p className="text-gray-600 font-bold pl-4">목표 금액: {campaign.goal}원</p>
                 </div>
               </div>
@@ -60,19 +66,19 @@ export default function detailCss(campaign, title, image_url, description, durat
                 <p className="text-gray-600 font-bold">여러분들의 소중한 기부금이 여기에 사용됩니다</p>
               </div>
               <div className="flex justify-between items-center w-full py-4 bg-gray-50 border-t border-b" style={{marginTop: "20px"}}>
-                <p className="font-bold-xl">총 기부금</p>
-                <p className="font-bold-xl bg-red-200 rounded-full text-blue-500 px-3 py-1">5000원</p>
-                <p className="font-bold-xl">목표금액 : 5000원</p>
+                <p className="font-bold-xl">총 기부금</p> 
+                <p className="font-bold-xl bg-red-200 rounded-full text-blue-500 px-3 py-1">{currentAmounts}원</p>
+                <p className="font-bold-xl">목표금액 : {campaign.goal}원</p>
               </div>
               <div className="flex justify-between items-center w-full py-4 border-t border-b">
                 <p className="font-bold-xl">사용비</p>
                 <p className="font-bold-xl">아동 가정 생계지원</p>
-                <p className="font-bold-xl">사용금액 : 2000원</p>
+                <p className="font-bold-xl">사용금액 : 200000</p>
               </div>
               <div className="flex justify-between items-center w-full py-4 border-t border-b">
                 <p className="font-bold-xl">사용비</p>
                 <p className="font-bold-xl">아동 가정 생계지원</p>
-                <p className="font-bold-xl">사용금액 : 3000원</p>
+                <p className="font-bold-xl">사용금액 : 300000</p>
               </div>
                 </div>
             </div>
