@@ -3,15 +3,18 @@
 import "../styles/globals.css";
 import Header from "./(AppComponents)/Header";
 import CampaignList from "./(AppComponents)/CampaignList";
+import Image from "next/image";
+import logoimage from "../../public/volunteer.png";
 
 export default function Page() {
 
   return (
     <>
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl text-white font-bold mb-8 text-center bg-gradient-to-r from-pink-400 to-purple-500 py-4">
-          여러분의 따스한 마음을 기부하세요
-        </h1>
+        <Image
+          alt="testimage"
+          src={logoimage}
+        />
         <CampaignList campaigns={campaigns} />
       </div>
     </>
