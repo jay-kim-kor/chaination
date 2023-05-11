@@ -1,4 +1,5 @@
 import Header from "./(AppComponents)/Header";
+import "../styles/globals.css";
 
 export const metadata = {
   title: "Chaination",

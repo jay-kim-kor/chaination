@@ -25,7 +25,7 @@ const MyDonation: React.FC = () => {
 
     fetchDonations();
   }, []);
-
+  
   return (
     <div>
       <h2>내 기부 기록</h2>

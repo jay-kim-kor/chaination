@@ -5,6 +5,7 @@ import Header from "./(AppComponents)/Header";
 import CampaignList from "./(AppComponents)/CampaignList";
 
 export default function Page() {
+
   return (
     <>
       <div className="container mx-auto px-4">
@@ -26,8 +27,8 @@ export const campaigns: ICampaignCardProps[] = [
     title: "극한의 상황에도 웃음을 잃지않는 소년",
     description: "캠페인에 대한 상세 내용1",
     duration: "2023-04-17 - 2023-05-16",
-    goal: 500000,
-    currentAmount: 300000,
+    goal: 1000000,
+    currentAmount: 450000,
     beneficiary: "0x303bD2170BD64e3Ee3Af2b5d77a9e05feEA49825",
     nowDonating: true,
   },
@@ -38,8 +39,8 @@ export const campaigns: ICampaignCardProps[] = [
     title: "배고픈 남부 아프리카 아이들을 위한 한 끼",
     description: "캠페인에 대한 상세 내용2",
     duration: "2023-04-17 - 2023-05-16",
-    goal: 30000,
-    currentAmount: 5000,
+    goal: 1200000,
+    currentAmount: 350000,
     beneficiary: "0xb941D25Eb30bc4fC33c9d93D522C7700BB749068",
     nowDonating: false,
   },
@@ -50,8 +51,8 @@ export const campaigns: ICampaignCardProps[] = [
     title: "추위에 고통스러워하는 고양이",
     description: "캠페인에 대한 상세 내용3",
     duration: "2023-04-17 - 2023-05-16",
-    goal: 10000,
-    currentAmount: 0,
+    goal: 600000,
+    currentAmount: 100000,
     beneficiary: "0x2EaEd391Ba249Dae46Df8a9AC00348eDD8790070",
     nowDonating: false,
   },
@@ -62,8 +63,8 @@ export const campaigns: ICampaignCardProps[] = [
     title: "지병으로 인해 숨을 쉬기 힘든 강아지",
     description: "캠페인에 대한 상세 내용4",
     duration: "2023-04-17 - 2023-05-16",
-    goal: 1000000,
-    currentAmount: 2000,
+    goal: 900000,
+    currentAmount: 450000,
     beneficiary: "0x3EC7fb4c6A1B0b2989191Cf1ce039F9831AEe156",
     nowDonating: false,
   },
