@@ -22,7 +22,9 @@ const BlockInfo = () => {
 
   return (
     <div>
-      <h1>블록 정보</h1>
+      {/*좌측 블록*/}
+      <div className = "flex border-8 border-black">
+      <h1>좌측 블록</h1>
       <input
         type="number"
         placeholder="Block number"
@@ -38,7 +40,17 @@ const BlockInfo = () => {
       {JSON.stringify(
         {
           ...block,
+          mixhash: undefined,
           logsBloom: undefined,
+          nonce: undefined,
+          sha3Uncles: undefined,
+          transactionsRoot: undefined,
+          stateroot: undefined,
+          receiptsRoot: undefined,
+          difficulty: undefined,
+          totalDifficulty: undefined,
+          extraData: undefined,
+          miner: undefined,
         },
         null,
         2
@@ -46,6 +58,44 @@ const BlockInfo = () => {
     </code>
   </pre>
 )}  
+    </div>
+    {/*우측 블록*/}
+    <div className = "flex border-8 border-black">
+      <h1>우측 블록</h1>
+      <input
+        type="number"
+        placeholder="Block number"
+        onChange={(e) => setBlockNumber(parseInt(e.target.value))}
+      />
+      <button onClick={fetchBlock} disabled={!blockNumber || loading}>
+        블록 확인
+      </button>
+      {loading && <p>Loading...</p>}
+      {block && (
+  <pre>
+    <code>
+      {JSON.stringify(
+        {
+          ...block,
+          mixhash: undefined,
+          logsBloom: undefined,
+          nonce: undefined,
+          sha3Uncles: undefined,
+          transactionsRoot: undefined,
+          stateroot: undefined,
+          receiptsRoot: undefined,
+          difficulty: undefined,
+          totalDifficulty: undefined,
+          extraData: undefined,
+          miner: undefined,
+        },
+        null,
+        2
+      )}
+    </code>
+  </pre>
+)}  
+    </div>
     </div>
   );
 };

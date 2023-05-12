@@ -50,15 +50,15 @@ export const TransactionInfo: React.FC<TransactionInfoProps> = ({ transactionHas
         </thead>
         <tbody>
           <tr>
-            <td className="border-2 p-2">기부자</td>
+            <td className="border-2 p-2">기부자 ID</td>
             <td className="border-2 p-2">{shortFrom}</td>
           </tr>
           <tr>
-            <td className="border-2 p-2">수혜자</td>
+            <td className="border-2 p-2">스마트 계약 주소</td>
             <td className="border-2 p-2">{shortTo}</td>
           </tr>
           <tr>
-            <td className="border-2 p-2">Value</td>
+            <td className="border-2 p-2">기부금</td>
             <td className="border-2 p-2">{valueInEther} ether</td>
           </tr>
           <tr>
