@@ -83,7 +83,7 @@ export default function CampaignCard({
   searchValue !== "" && title.toLowerCase().includes(searchValue.toLowerCase());
 
   return (
-    <div className="w-1/2 h-full p-4">
+    <div className="h-full p-4 ">
         <div className="bg-white shadow-md hover:shadow-lg rounded-md overflow-hidden w-full">
           <Link href={`/${id}/detailpage`}>
           <img

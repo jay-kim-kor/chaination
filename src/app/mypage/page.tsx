@@ -113,7 +113,7 @@ export default function MyInfo({ }: Props) {
         </div>
 
         {/* 캠페인카드 불러오기 , 참여기록이 없을때 표시창 필요함*/}
-        <div className="flex w-1/3 h-full border-r bg-red-300">
+        <div className="flex w-1/2 h-full border-r bg-red-300">
           {campaigns.filter((campaign, index) => nowDonatingsState[index]).length === 0 ? (
             <div className="flex flex-col justify-center items-center w-full h-full">
               <h2 className="text-2xl  font-bold">
@@ -121,9 +121,10 @@ export default function MyInfo({ }: Props) {
             </div>
           ) : (
             <>
-              <div className="flex-col w-1/2 items-center  p-4 pt-24 space-y-4">
+              <div className="flex-wrap object-cover p-4 pt-24 space-y-4">
                 {/* 미리 작성된 campaings 배열을 기반으로 렌더링 */}
                 {campaigns.filter((campaign, index) => nowDonatingsState[index]).map((campaign: ICampaignCardProps, index: number) => (
+                  <div className="bg-white w-full">
                   <CampaignCard
                     {...campaign}
                     key={campaign.id}
@@ -131,6 +132,7 @@ export default function MyInfo({ }: Props) {
                     index={index}
                     donationAmount={donationAmounts[index]}
                   />
+                  </div>
                 ))}
               </div>
               <div className="flex-col w-1/2 items-center  p-4 pt-24 space-y-4">
@@ -145,10 +147,6 @@ export default function MyInfo({ }: Props) {
           )}
         </div>
 
-        {/* 빈공간 */}
-        <div className="flex w-1/5 ">
-
-        </div>
 
       </div>
     </>

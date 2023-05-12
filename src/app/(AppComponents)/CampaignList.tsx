@@ -39,14 +39,16 @@ const CampaignList: React.FC<CampaignListProps> = ({ campaigns }) => {
   return (
     <>
       <SearchBar onSearch={onSearch} />
-      <div className="flex flex-wrap justify-center items-stretch w-full h-full">
+      <div className="flex flex-wrap justify-stretch h-full">
         {filteredCampaigns.map((campaign: ICampaignCardProps, index: number) => (
+          <div className="w-1/2">
           <CampaignCard
             {...campaign}
             key={campaign.id}
             beneficiary={beneficiaries}
             index={index}
           />
+          </div>
         ))}
       </div>
     </>
