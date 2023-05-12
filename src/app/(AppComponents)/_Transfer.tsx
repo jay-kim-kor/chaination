@@ -33,7 +33,8 @@ const Transfer: React.FC<TransferProps> = ({ beneficiarys, contract, web3, donat
     await contract.methods.donate(beneficiarys[donationId], id).send({ from: accounts[0], value: amountInWei });
     handlesDonate(amount)
 
-    const storageKey = `donatedAmount-${accounts[0]}-${donationId}`;
+    const storageKey = `donatedAmount-${accounts[0]}-${id}`;
+
     const currentAmountArray = JSON.parse(sessionStorage.getItem(storageKey) || '[]');
     //sesstionStorage를 사용해서 amount값을 저장
     currentAmountArray.push(amount);

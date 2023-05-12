@@ -57,7 +57,6 @@ export default function CampaignCard({
   const currentAmounts = parseInt(sessionStorage.getItem(`${id}-current`))
   const [current, setCurrent] = useState(); 
   const [searchValue, setSearchValue] = useState("");
-
   useEffect(() => {
     const init = async () => {
       if (!sessionStorage.getItem(`${id}-hasCampaignData`)) {
